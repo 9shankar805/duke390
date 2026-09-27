@@ -668,7 +668,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ==========================================================================
-     11. HEADER SCROLL GLASS EFFECT
+     11. HEADER SCROLL GLASS EFFECT & MOBILE OPTIMIZATIONS
      ========================================================================== */
   const header = document.getElementById('main-header');
   window.addEventListener('scroll', () => {
@@ -678,6 +678,19 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
       header.classList.add('bg-black/75', 'border-white/5');
       header.classList.remove('bg-black/90', 'shadow-[0_4px_30px_rgba(0,0,0,0.8)]', 'border-orange-500/20');
+    }
+  }, { passive: true });
+
+  /* ==========================================================================
+     12. SYSTEM READY SYNCHRONIZATION (POST-PRELOADER)
+     ========================================================================== */
+  window.addEventListener('ktm:ready', () => {
+    // Recalculate canvas viewports
+    window.dispatchEvent(new Event('resize'));
+    
+    // Refresh ScrollTriggers for rock-solid geometry calculation
+    if (typeof ScrollTrigger !== 'undefined') {
+      ScrollTrigger.refresh(true);
     }
   });
 });
