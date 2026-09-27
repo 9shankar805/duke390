@@ -482,6 +482,21 @@ canvas {
   backface-visibility: hidden;
 }
 
+/* Component Row Cards & Image Rendering */
+.component-row-card {
+  opacity: 1 !important;
+  visibility: visible !important;
+  background: #0d0d10 !important;
+}
+
+.component-row-card img {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  border-radius: 0.5rem;
+}
+
 @media (hover: none) and (pointer: coarse) {
   #cursor-glow {
     display: none !important;
