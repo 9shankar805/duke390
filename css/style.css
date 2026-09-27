@@ -1,0 +1,413 @@
+/* ==========================================================================
+   KTM DUKE 390 - "READY TO RACE" OFFICIAL LANDING PAGE DESIGN SYSTEM
+   Brand Colors: KTM Orange (#FF6600), Electric Orange (#FF7A00), Carbon Dark (#0B0B0D)
+   ========================================================================== */
+
+:root {
+  --ktm-orange: #FF6600;
+  --ktm-orange-bright: #FF7A00;
+  --ktm-orange-glow: rgba(255, 102, 0, 0.4);
+  --ktm-orange-subtle: rgba(255, 102, 0, 0.12);
+  --ktm-black: #080809;
+  --ktm-dark-card: #121215;
+  --ktm-dark-surface: #18181D;
+  --ktm-white: #FFFFFF;
+  --ktm-gray: #A1A1AA;
+  --ktm-border: rgba(255, 255, 255, 0.1);
+  --ktm-orange-border: rgba(255, 102, 0, 0.35);
+  
+  --font-heading: 'Barlow Condensed', 'Orbitron', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'Rajdhani', monospace, -apple-system, sans-serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--ktm-black);
+  color: var(--ktm-white);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+body {
+  background-color: var(--ktm-black);
+  color: var(--ktm-white);
+  line-height: 1.5;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Typography Utility Classes */
+.font-heading {
+  font-family: var(--font-heading);
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+.font-sans {
+  font-family: var(--font-sans);
+}
+
+.text-ktm-orange {
+  color: var(--ktm-orange);
+}
+
+.bg-ktm-orange {
+  background-color: var(--ktm-orange);
+}
+
+/* Carbon Mesh & Gradients */
+.bg-carbon-grid {
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.bg-radial-gradient {
+  background: radial-gradient(circle at 50% 30%, rgba(255, 102, 0, 0.08) 0%, rgba(0, 0, 0, 0) 70%);
+}
+
+/* KTM Sliced / Chamfered Angular Buttons */
+.cut-corner-btn {
+  clip-path: polygon(14px 0%, 100% 0%, calc(100% - 14px) 100%, 0% 100%);
+}
+
+.cut-corner-btn-rev {
+  clip-path: polygon(0% 0%, calc(100% - 14px) 0%, 100% 100%, 14px 100%);
+}
+
+/* Trellis Angular Divider */
+.trellis-divider {
+  background: linear-gradient(135deg, transparent 48%, var(--ktm-orange) 49%, var(--ktm-orange) 51%, transparent 52%),
+              linear-gradient(-135deg, transparent 48%, var(--ktm-orange) 49%, var(--ktm-orange) 51%, transparent 52%);
+  background-size: 32px 32px;
+  opacity: 0.25;
+}
+
+/* Cursor Glow */
+#cursor-glow {
+  background: radial-gradient(circle, rgba(255, 102, 0, 0.35) 0%, rgba(255, 102, 0, 0) 70%);
+}
+
+/* 3D Perspective Card */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+#hero-bike-card {
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+#hero-interactive-canvas {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  transition: transform 0.05s ease-out;
+}
+
+/* Sound Wave Animation */
+.sound-wave .bar {
+  display: inline-block;
+  width: 3px;
+  height: 12px;
+  background-color: var(--ktm-orange);
+  border-radius: 2px;
+  animation: soundBars 1s infinite alternate ease-in-out;
+}
+
+.sound-wave .bar-1 { animation-delay: 0.1s; }
+.sound-wave .bar-2 { animation-delay: 0.3s; }
+.sound-wave .bar-3 { animation-delay: 0.2s; }
+
+.hud-sound-btn.sound-active .bar {
+  background-color: #00FF88;
+}
+
+@keyframes soundBars {
+  0% { height: 4px; }
+  100% { height: 16px; }
+}
+
+/* Marquee Animation */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.marquee-track {
+  display: flex;
+  width: 200%;
+  animation: marquee 20s linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+/* Hotspot Pins in Engineering Section */
+.hotspot-pin {
+  position: absolute;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 20;
+  background: none;
+  border: none;
+  outline: none;
+}
+
+.hotspot-ring {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 2px solid var(--ktm-orange);
+  animation: pingPulse 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+.hotspot-dot {
+  position: relative;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #000000;
+  border: 2px solid var(--ktm-orange);
+  color: var(--ktm-orange);
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 0 15px rgba(255, 102, 0, 0.6);
+}
+
+.hotspot-pin:hover .hotspot-dot,
+.hotspot-pin.active .hotspot-dot {
+  background: var(--ktm-orange);
+  color: #000000;
+  transform: scale(1.2);
+  box-shadow: 0 0 25px rgba(255, 102, 0, 0.9);
+}
+
+.hotspot-label {
+  position: absolute;
+  left: 42px;
+  white-space: nowrap;
+  background: rgba(0, 0, 0, 0.85);
+  border: 1px solid var(--ktm-orange-border);
+  color: #FFFFFF;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 4px 10px;
+  border-radius: 4px;
+  opacity: 0;
+  transform: translateX(-10px);
+  pointer-events: none;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(8px);
+}
+
+.hotspot-pin:hover .hotspot-label,
+.hotspot-pin.active .hotspot-label {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+@keyframes pingPulse {
+  75%, 100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}
+
+/* TFT Shift Light Flash Animation */
+@keyframes shiftFlash {
+  0%, 100% {
+    background-color: #FF0033;
+    color: #FFFFFF;
+    box-shadow: 0 0 30px #FF0033;
+  }
+  50% {
+    background-color: #FFFFFF;
+    color: #000000;
+    box-shadow: 0 0 40px #FFFFFF;
+  }
+}
+
+.shift-light-flashing {
+  animation: shiftFlash 0.12s infinite;
+}
+
+/* Glassmorphism Specs Card Hover */
+.spec-glass-card {
+  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.spec-glass-card:hover {
+  border-color: var(--ktm-orange);
+  box-shadow: 0 10px 40px rgba(255, 102, 0, 0.2);
+}
+
+/* Gallery Hover Vignette */
+.gallery-item {
+  transition: transform 0.4s ease, border-color 0.3s ease;
+}
+
+.gallery-item:hover {
+  border-color: var(--ktm-orange);
+}
+
+/* Gravity Fall Runway & Speed Trails */
+.speed-trail {
+  filter: drop-shadow(0 0 8px #FF6600);
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+
+@keyframes laserPulse {
+  0%, 100% { opacity: 0.3; transform: scaleY(1); }
+  50% { opacity: 0.9; transform: scaleY(1.05); }
+}
+
+.laser-active {
+  animation: laserPulse 1.2s infinite ease-in-out;
+}
+
+/* Mobile Responsiveness Fine-Tuning */
+@media (max-width: 640px) {
+  .hero-title {
+    font-size: 3.75rem !important;
+    line-height: 0.9 !important;
+  }
+  
+  .hotspot-label {
+    display: none;
+  }
+
+  .cut-corner-btn {
+    clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
+  }
+
+  .cut-corner-btn-rev {
+    clip-path: polygon(0% 0%, calc(100% - 10px) 0%, 100% 100%, 10px 100%);
+  }
+  
+  #hero-canvas-viewport {
+    aspect-ratio: 16/10 !important;
+  }
+
+  #scroll-fall-arena {
+    padding: 1rem !important;
+  }
+}
+
+/* Global Bottom Scroll Velocity Rider */
+#global-scroll-rider {
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.9), 0 0 35px rgba(255, 102, 0, 0.25);
+}
+
+.rider-streak {
+  position: absolute;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #FF6600, #00D4FF, transparent);
+  border-radius: 9999px;
+  animation: streakMove 0.4s linear infinite;
+}
+
+.streak-1 { top: 20%; left: 0; width: 120px; animation-duration: 0.3s; }
+.streak-2 { top: 50%; left: 20%; width: 180px; animation-duration: 0.25s; animation-delay: 0.1s; }
+.streak-3 { top: 80%; left: 40%; width: 140px; animation-duration: 0.35s; animation-delay: 0.05s; }
+
+@keyframes streakMove {
+  0% { transform: translateX(100%); opacity: 0; }
+  50% { opacity: 1; }
+  100% { transform: translateX(-100%); opacity: 0; }
+}
+
+.waypoint-dot {
+  position: relative;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.waypoint-dot:hover {
+  transform: scale(1.6);
+  background-color: var(--ktm-orange);
+  box-shadow: 0 0 10px var(--ktm-orange);
+}
+
+/* Shift LED Indicators */
+.shift-led.led-green {
+  background-color: #00FF88 !important;
+  box-shadow: 0 0 8px #00FF88;
+}
+
+.shift-led.led-amber {
+  background-color: #FF9900 !important;
+  box-shadow: 0 0 8px #FF9900;
+}
+
+.shift-led.led-red {
+  background-color: #FF0033 !important;
+  box-shadow: 0 0 12px #FF0033;
+  animation: shiftFlash 0.12s infinite;
+}
+
+/* Professional Asphalt Race Track Road Styling */
+.bg-racing-kerb {
+  background: repeating-linear-gradient(
+    -45deg,
+    #FF6600,
+    #FF6600 10px,
+    #FFFFFF 10px,
+    #FFFFFF 20px,
+    #18181B 20px,
+    #18181B 30px
+  );
+  box-shadow: 0 0 6px rgba(255, 102, 0, 0.3);
+}
+
+.bg-asphalt-texture {
+  background-color: #0d0d10;
+  background-image: 
+    radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, rgba(0, 0, 0, 0.6) 100%);
+  background-size: 6px 6px, 100% 100%;
+}
+
+.bg-road-dashes {
+  background: repeating-linear-gradient(
+    90deg,
+    #FFFFFF 0px,
+    #FFFFFF 36px,
+    transparent 36px,
+    transparent 72px
+  );
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) and (pointer: coarse) {
+  #cursor-glow {
+    display: none !important;
+  }
+}
+
+
+
+

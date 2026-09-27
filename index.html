@@ -1,0 +1,1681 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KTM DUKE 390 | READY TO RACE</title>
+  <meta name="description" content="Experience the all-new KTM 390 DUKE: The Corner Rocket. 399cc LC4c engine, adjustable WP APEX suspension, cornering MTC, and aggressive naked streetfighter styling.">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230b0b0c'/><polygon points='15,80 35,20 55,20 35,80' fill='%23FF6600'/><polygon points='45,80 65,20 85,20 65,80' fill='%23FF6600'/></svg>">
+
+  <!-- Google Fonts: Orbitron, Rajdhani, Syne, Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700;1,900&family=Orbitron:wght@500;700;800;900&family=Rajdhani:wght@500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Three.js & Controls for 3D WebGL Experience -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+  
+  <!-- GSAP Animation Engine -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Tailwind CSS CDN with Custom KTM Configuration -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'ktm-orange': '#FF6600',
+            'ktm-orange-bright': '#FF7A00',
+            'ktm-dark': '#080809',
+            'ktm-card': '#121215',
+          },
+          fontFamily: {
+            heading: ['Barlow Condensed', 'Orbitron', 'sans-serif'],
+            mono: ['Rajdhani', 'monospace'],
+            sans: ['Inter', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-black text-white selection:bg-ktm-orange selection:text-black">
+  
+  <!-- Custom Neon Cursor Glow -->
+  <div id="cursor-glow" class="pointer-events-none fixed z-50 h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full opacity-0 blur-3xl transition-opacity duration-300"></div>
+
+  <!-- LUXURY BOTTOM TIMELINE RUNWAY & GROUNDLESS ATLANTIC BLUE DUKE -->
+  <aside id="global-scroll-rider" class="fixed bottom-0 left-0 right-0 z-40 select-none pointer-events-none overflow-visible">
+    
+    <!-- Bike Riding Stage (Full Bike 100% Visible with Zero Ground Smudge) -->
+    <div class="relative w-full overflow-visible pointer-events-none h-16 sm:h-20 max-w-7xl mx-auto px-6">
+      
+      <!-- THE CLEAN GROUNDLESS ATLANTIC BLUE DUKE 390 -->
+      <div id="global-cruiser-bike" class="absolute bottom-1 left-0 -translate-x-1/2 w-28 sm:w-36 md:w-44 aspect-[16/9] z-30 will-change-transform pointer-events-none overflow-visible">
+        
+        <!-- Live Velocity Speed Badge Pill Floating Above Bike -->
+        <div id="cruiser-speed-pill" class="absolute -top-3.5 left-1/2 -translate-x-1/2 whitespace-nowrap font-mono text-[9px] sm:text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-black/95 border border-orange-500/80 text-orange-400 shadow-[0_0_15px_rgba(255,102,0,0.6)] flex items-center gap-1.5 z-40">
+          <span id="global-speed-val">0</span>
+          <span class="text-white text-[8px]">KM/H</span>
+          <span class="text-zinc-500">|</span>
+          <span id="global-gear-val" class="text-blue-400">N</span>
+        </div>
+
+        <!-- Exhaust Nitro Flame (Behind bike on left side when accelerating) -->
+        <div id="cruiser-exhaust-flame" class="absolute bottom-2.5 left-[20%] w-5 h-2.5 bg-gradient-to-l from-orange-500 via-yellow-400 to-cyan-400 rounded-full blur-[1px] opacity-0 transition-opacity z-10"></div>
+        
+        <!-- Tail Brake Light (On rear left side when braking) -->
+        <div id="cruiser-brake-light" class="absolute top-4 left-[8%] w-2.5 h-2.5 bg-red-600 rounded-full blur-[2px] opacity-0 transition-opacity z-10"></div>
+
+        <!-- Pure Clean Forward-Facing Atlantic Blue 390 Duke (Zero Ground/Floor) -->
+        <img src="assets/duke-390-blue-side-forward.png" 
+             alt="KTM 390 Duke Atlantic Blue" 
+             class="w-full h-full object-contain filter drop-shadow-[0_6px_16px_rgba(0,119,255,0.7)] select-none pointer-events-none">
+      </div>
+
+    </div>
+
+    <!-- Luxury Glassmorphic Timeline Horizon Track with Section Waypoints -->
+    <div class="relative w-full bg-black/90 backdrop-blur-xl border-t border-white/10 py-1.5 px-4 sm:px-8 z-20 flex flex-col justify-center shadow-[0_-8px_20px_rgba(0,0,0,0.8)]">
+      
+      <!-- Section Waypoint Nodes (01 -> 06) -->
+      <div class="w-full max-w-7xl mx-auto flex justify-between items-center font-mono text-[8px] sm:text-[9px] font-bold text-zinc-500 px-1 mb-1 pointer-events-auto">
+        <a href="#hero" class="hover:text-ktm-orange transition-colors">01 OVERVIEW</a>
+        <a href="#specs" class="hover:text-ktm-orange transition-colors hidden sm:inline">02 SPECS</a>
+        <a href="#engineering" class="hover:text-ktm-orange transition-colors">03 ANATOMY</a>
+        <a href="#colorways" class="hover:text-ktm-orange transition-colors hidden md:inline">04 COLORS</a>
+        <a href="#cockpit" class="hover:text-ktm-orange transition-colors hidden sm:inline">05 COCKPIT</a>
+        <a href="#booking" class="hover:text-ktm-orange text-orange-400 font-bold transition-colors">06 BOOK RIDE</a>
+      </div>
+
+      <!-- Laser Progress Energy Bar -->
+      <div class="w-full max-w-7xl mx-auto h-1 bg-zinc-800 rounded-full relative overflow-hidden border border-white/5">
+        <div id="global-track-fill" class="absolute left-0 top-0 h-full bg-gradient-to-r from-orange-600 via-blue-500 to-orange-500 rounded-full w-0 transition-all duration-75 shadow-[0_0_10px_#0077FF]"></div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Sleek Minimalist Floating Audio Toggle (Bottom Right) -->
+  <div class="fixed bottom-12 right-4 z-50 pointer-events-auto">
+    <button id="engine-sound-toggle" class="hud-sound-btn flex items-center gap-2 rounded-full border border-orange-500/40 bg-black/90 px-3.5 py-1.5 text-xs font-bold uppercase tracking-wider text-white backdrop-blur-md transition-all duration-300 hover:border-orange-500 hover:bg-orange-500/20 hover:scale-105 shadow-[0_10px_25px_rgba(0,0,0,0.9),0_0_15px_rgba(255,102,0,0.3)]" title="Toggle Engine Audio">
+      <span class="sound-wave flex items-center gap-0.5">
+        <span class="bar bar-1"></span>
+        <span class="bar bar-2"></span>
+        <span class="bar bar-3"></span>
+      </span>
+      <span id="sound-btn-text" class="font-mono text-[9px] tracking-wider">SOUND</span>
+    </button>
+  </div>
+
+  <!-- Noise and Grid Overlays -->
+  <div class="fixed inset-0 pointer-events-none z-0 bg-carbon-grid opacity-25"></div>
+  <div class="fixed inset-0 pointer-events-none z-0 bg-radial-gradient"></div>
+
+  <!-- Header / Navigation Bar -->
+  <header id="main-header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-white/5 bg-black/75 backdrop-blur-xl">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <a href="#hero" class="flex items-center gap-3 group">
+        <div class="ktm-badge flex items-center justify-center font-black tracking-tighter text-black bg-ktm-orange px-3 py-1 font-heading text-xl skew-x-[-15deg] transition-transform duration-300 group-hover:scale-105 group-hover:shadow-[0_0_25px_rgba(255,102,0,0.8)]">
+          <span class="skew-x-[15deg]">KTM</span>
+        </div>
+        <div class="flex flex-col">
+          <span class="font-heading font-black text-lg tracking-wider text-white flex items-center gap-1.5">
+            390 DUKE
+            <span class="inline-block w-2 h-2 rounded-full bg-ktm-orange animate-ping"></span>
+          </span>
+          <span class="text-[10px] tracking-[0.25em] font-mono text-zinc-400 uppercase">READY TO RACE</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex items-center gap-8 font-heading text-sm uppercase tracking-widest text-zinc-300 font-semibold">
+        <a href="#hero" class="nav-link transition-colors duration-200 hover:text-ktm-orange flex items-center gap-1">01 // OVERVIEW</a>
+        <a href="#specs" class="nav-link transition-colors duration-200 hover:text-ktm-orange flex items-center gap-1">02 // SPECS</a>
+        <a href="#engineering" class="nav-link transition-colors duration-200 hover:text-ktm-orange flex items-center gap-1">03 // ENGINEERING</a>
+        <a href="#colorways" class="nav-link transition-colors duration-200 hover:text-ktm-orange flex items-center gap-1">04 // COLORS</a>
+        <a href="#cockpit" class="nav-link transition-colors duration-200 hover:text-ktm-orange flex items-center gap-1">05 // COCKPIT HUD</a>
+        <a href="#gallery" class="nav-link transition-colors duration-200 hover:text-ktm-orange flex items-center gap-1">06 // GALLERY</a>
+      </nav>
+
+      <!-- CTA Button & Mobile Trigger -->
+      <div class="flex items-center gap-4">
+        <button id="book-test-ride-btn" class="hidden sm:inline-flex items-center gap-2 relative overflow-hidden px-6 py-2.5 font-heading font-black tracking-wider uppercase text-black bg-ktm-orange cut-corner-btn transition-all duration-300 hover:bg-white hover:shadow-[0_0_30px_rgba(255,102,0,0.8)] hover:scale-105 active:scale-95">
+          <span class="relative z-10">BOOK TEST RIDE</span>
+          <i data-lucide="chevron-right" class="w-4 h-4 relative z-10 stroke-[3]"></i>
+        </button>
+
+        <button id="mobile-menu-btn" class="md:hidden text-zinc-300 hover:text-ktm-orange p-2" aria-label="Open Menu">
+          <i data-lucide="menu" class="w-7 h-7"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer Menu -->
+    <div id="mobile-menu" class="hidden md:hidden border-t border-white/10 bg-black/95 backdrop-blur-2xl px-6 py-6 transition-all duration-300">
+      <div class="flex flex-col gap-4 font-heading text-base uppercase tracking-wider">
+        <a href="#hero" class="mobile-nav-link text-zinc-200 hover:text-ktm-orange py-2 border-b border-white/5">01 // OVERVIEW</a>
+        <a href="#specs" class="mobile-nav-link text-zinc-200 hover:text-ktm-orange py-2 border-b border-white/5">02 // SPECS</a>
+        <a href="#engineering" class="mobile-nav-link text-zinc-200 hover:text-ktm-orange py-2 border-b border-white/5">03 // ENGINEERING</a>
+        <a href="#colorways" class="mobile-nav-link text-zinc-200 hover:text-ktm-orange py-2 border-b border-white/5">04 // COLORS</a>
+        <a href="#cockpit" class="mobile-nav-link text-zinc-200 hover:text-ktm-orange py-2 border-b border-white/5">05 // COCKPIT HUD</a>
+        <a href="#gallery" class="mobile-nav-link text-zinc-200 hover:text-ktm-orange py-2 border-b border-white/5">06 // GALLERY</a>
+        <button class="book-test-ride-trigger w-full mt-3 py-3 font-heading font-black tracking-wider uppercase text-black bg-ktm-orange text-center">
+          BOOK A TEST RIDE
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO SECTION WITH 3D EXPLODED SHOWCASE & LIVE TELEMETRY -->
+  <section id="hero" class="relative pt-20 sm:pt-24 pb-12 overflow-hidden">
+    
+    <!-- Hero Ambient Glow & Grid -->
+    <div class="absolute inset-0 pointer-events-none">
+      <div class="hero-glow-blob absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] sm:w-[800px] h-[600px] sm:h-[800px] rounded-full bg-ktm-orange/15 blur-[120px] sm:blur-[160px]"></div>
+      <div class="hero-watermark absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 font-heading font-black text-[22vw] text-white/[0.025] tracking-tighter select-none whitespace-nowrap pointer-events-none">
+        DUKE 390
+      </div>
+      
+      <!-- Telemetry Corners -->
+      <div class="hud-line-tl absolute top-24 left-8 text-[11px] font-mono text-zinc-500 uppercase tracking-widest hidden xl:block">
+        <div class="flex items-center gap-2 mb-1">
+          <span class="w-2 h-2 bg-ktm-orange"></span>
+          <span class="text-zinc-300">TELEMETRY // GEN-3 LC4c</span>
+        </div>
+        <span class="text-ktm-orange font-bold">CHASSIS:</span> 2-PIECE TRELLIS FRAME<br>
+        <span class="text-ktm-orange font-bold">STATUS:</span> ARMED & READY
+      </div>
+
+      <div class="hud-line-tr absolute top-24 right-8 text-[11px] font-mono text-zinc-500 uppercase tracking-widest text-right hidden xl:block">
+        <div class="flex items-center justify-end gap-2 mb-1">
+          <span class="text-zinc-300">SYSTEM READY</span>
+          <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+        </div>
+        <span class="text-ktm-orange font-bold">POWER:</span> 45 PS @ 8,500 RPM<br>
+        <span class="text-ktm-orange font-bold">TORQUE:</span> 39 NM @ 7,000 RPM
+      </div>
+    </div>
+
+    <!-- Main Hero Content -->
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 w-full flex flex-col items-center text-center">
+      
+      <!-- Top Subtitle Pill -->
+      <div class="hero-pill inline-flex items-center gap-2 px-3 sm:px-4 py-1 rounded-full border border-orange-500/30 bg-orange-500/10 backdrop-blur-md mb-2 transform -skew-x-6">
+        <span class="inline-block w-1.5 h-1.5 sm:w-2 sm:h-2 bg-ktm-orange rounded-full animate-ping"></span>
+        <span class="font-mono text-[10px] sm:text-xs uppercase tracking-[0.25em] text-orange-400 font-bold skew-x-6">
+          ALL-NEW 2024 GEN 3 PLATFORM
+        </span>
+      </div>
+
+      <!-- Explosive Title -->
+      <div class="relative mb-2">
+        <h1 class="hero-title font-heading font-black text-5xl sm:text-7xl md:text-8xl lg:text-9xl tracking-tighter leading-none uppercase italic text-transparent bg-clip-text bg-gradient-to-b from-white via-zinc-100 to-zinc-400 drop-shadow-[0_10px_25px_rgba(0,0,0,0.8)]">
+          <span class="text-ktm-orange">DUKE</span> 390
+        </h1>
+        <div class="hero-tagline font-heading font-extrabold text-xs sm:text-lg md:text-2xl uppercase tracking-[0.3em] sm:tracking-[0.35em] text-zinc-300 mt-1 flex items-center justify-center gap-2 sm:gap-4">
+          <span class="h-0.5 w-4 sm:w-10 bg-ktm-orange"></span>
+          <span>THE CORNER ROCKET</span>
+          <span class="h-0.5 w-4 sm:w-10 bg-ktm-orange"></span>
+        </div>
+      </div>
+
+      <!-- Center Photorealistic 3D / Exploded Interactive Motorcycle Hero Showcase -->
+      <div class="hero-bike-container relative w-full max-w-4xl my-2 group perspective-1000">
+        <!-- Ambient Underglow -->
+        <div class="absolute -bottom-4 left-1/2 -translate-x-1/2 w-4/5 h-16 bg-ktm-orange/30 blur-2xl rounded-full pointer-events-none"></div>
+
+        <!-- Floating Callout Badge 1: Trellis Frame (Left Top) -->
+        <div id="hero-callout-1" class="absolute -left-2 sm:-left-4 top-1/4 z-30 hidden lg:flex items-center gap-3 p-3 rounded-xl border border-orange-500/40 bg-black/90 backdrop-blur-xl shadow-[0_0_25px_rgba(255,102,0,0.3)] transition-all duration-300 opacity-0 transform -translate-y-4">
+          <div class="w-8 h-8 rounded-lg bg-ktm-orange text-black font-black flex items-center justify-center font-heading text-sm">01</div>
+          <div class="text-left">
+            <span class="text-[10px] font-mono uppercase text-orange-400 font-bold block">TRELLIS CHASSIS</span>
+            <span class="text-xs text-white font-heading font-bold">25CrMo4 Steel Cage</span>
+          </div>
+        </div>
+
+        <!-- Floating Callout Badge 2: Engine (Left Bottom) -->
+        <div id="hero-callout-2" class="absolute -left-2 sm:-left-4 bottom-1/4 z-30 hidden lg:flex items-center gap-3 p-3 rounded-xl border border-orange-500/40 bg-black/90 backdrop-blur-xl shadow-[0_0_25px_rgba(255,102,0,0.3)] transition-all duration-300 opacity-0 transform translate-y-4">
+          <div class="w-8 h-8 rounded-lg bg-ktm-orange text-black font-black flex items-center justify-center font-heading text-sm">02</div>
+          <div class="text-left">
+            <span class="text-[10px] font-mono uppercase text-orange-400 font-bold block">399cc LC4c ENGINE</span>
+            <span class="text-xs text-white font-heading font-bold">45 PS // 39 Nm Torque</span>
+          </div>
+        </div>
+
+        <!-- Floating Callout Badge 3: WP Suspension (Right Top) -->
+        <div id="hero-callout-3" class="absolute -right-2 sm:-right-4 top-1/4 z-30 hidden lg:flex items-center gap-3 p-3 rounded-xl border border-orange-500/40 bg-black/90 backdrop-blur-xl shadow-[0_0_25px_rgba(255,102,0,0.3)] transition-all duration-300 opacity-0 transform -translate-y-4">
+          <div class="text-right">
+            <span class="text-[10px] font-mono uppercase text-orange-400 font-bold block">WP APEX 43mm</span>
+            <span class="text-xs text-white font-heading font-bold">5-Click Adj Inverted Forks</span>
+          </div>
+          <div class="w-8 h-8 rounded-lg bg-ktm-orange text-black font-black flex items-center justify-center font-heading text-sm">03</div>
+        </div>
+
+        <!-- Floating Callout Badge 4: ByBre Brakes (Right Bottom) -->
+        <div id="hero-callout-4" class="absolute -right-2 sm:-right-4 bottom-1/4 z-30 hidden lg:flex items-center gap-3 p-3 rounded-xl border border-orange-500/40 bg-black/90 backdrop-blur-xl shadow-[0_0_25px_rgba(255,102,0,0.3)] transition-all duration-300 opacity-0 transform translate-y-4">
+          <div class="text-right">
+            <span class="text-[10px] font-mono uppercase text-orange-400 font-bold block">BYBRE RADIAL BRAKES</span>
+            <span class="text-xs text-white font-heading font-bold">320mm Rotor & Supermoto ABS</span>
+          </div>
+          <div class="w-8 h-8 rounded-lg bg-ktm-orange text-black font-black flex items-center justify-center font-heading text-sm">04</div>
+        </div>
+
+        <!-- 3D Interactive Stage Card -->
+        <div id="hero-bike-card" class="relative overflow-hidden rounded-2xl border-2 border-orange-500/40 bg-zinc-950/90 p-1.5 sm:p-3 backdrop-blur-xl shadow-[0_0_60px_rgba(255,102,0,0.25)] transition-transform duration-200">
+          
+          <!-- Photorealistic 100-Frame 3D Canvas Viewport -->
+          <div id="hero-canvas-viewport" class="relative rounded-xl overflow-hidden aspect-[16/10] sm:aspect-[21/10] flex items-center justify-center bg-[#08080a] cursor-ew-resize select-none">
+            <canvas id="hero-interactive-canvas" class="w-full h-full object-contain pointer-events-none"></canvas>
+
+            <!-- 3D Overlay Telemetry HUD (Responsive) -->
+            <div class="absolute inset-0 pointer-events-none p-2 sm:p-3 flex flex-col justify-between z-10">
+              <div class="flex justify-between items-start text-[9px] sm:text-[10px] font-mono text-zinc-400">
+                <span class="bg-black/85 px-2.5 py-0.5 rounded border border-orange-500/40 text-orange-400 flex items-center gap-1 shadow-lg">
+                  <i data-lucide="crosshair" class="w-3 h-3 text-ktm-orange"></i>
+                  1080P CAD 3D
+                </span>
+                <span class="bg-black/85 px-2.5 py-0.5 rounded border border-white/10 flex items-center gap-1 text-zinc-200 shadow-lg">
+                  <i data-lucide="mouse-pointer" class="w-3 h-3 text-ktm-orange"></i>
+                  <span class="hidden sm:inline">SCROLL OR DRAG TO EXPLODE</span>
+                  <span class="sm:hidden">SWIPE TO SCRUB</span>
+                </span>
+              </div>
+              <div class="flex justify-between items-end text-[9px] sm:text-[10px] font-mono text-zinc-400">
+                <span id="hero-frame-counter" class="bg-black/85 px-2.5 py-0.5 rounded border border-white/10 flex items-center gap-1 text-zinc-300">
+                  FRAME: 001 / 100
+                </span>
+                <span id="hero-3d-status" class="bg-black/85 px-2.5 py-0.5 rounded border border-orange-500/40 text-orange-400 font-bold uppercase">
+                  READY TO RACE
+                </span>
+              </div>
+            </div>
+
+            <!-- 3D Player Interactive Floating Controls -->
+            <div class="absolute bottom-2 right-2 flex items-center gap-1.5 z-20 pointer-events-auto">
+              <button id="hero-explode-toggle-btn" class="px-2.5 sm:px-3 py-1 bg-black/85 hover:bg-ktm-orange hover:text-black text-[9px] sm:text-[10px] font-heading font-black uppercase tracking-wider text-orange-400 rounded border border-orange-500/50 backdrop-blur-md transition-all duration-200 flex items-center gap-1 shadow-xl active:scale-95">
+                <i data-lucide="split" class="w-3 h-3"></i>
+                <span>EXPLODE</span>
+              </button>
+
+              <button id="hero-toggle-play-btn" class="px-2.5 sm:px-3 py-1 bg-black/85 hover:bg-ktm-orange hover:text-black text-[9px] sm:text-[10px] font-heading font-black uppercase tracking-wider text-zinc-300 rounded border border-white/20 backdrop-blur-md transition-all duration-200 flex items-center gap-1 shadow-xl active:scale-95">
+                <i data-lucide="play" class="w-3 h-3"></i>
+                <span>PLAY</span>
+              </button>
+
+              <button id="hero-reset-view-btn" class="p-1 bg-black/85 hover:bg-ktm-orange hover:text-black text-zinc-300 rounded border border-white/20 backdrop-blur-md transition-all duration-200 shadow-xl active:scale-95" title="Reset View">
+                <i data-lucide="maximize" class="w-3 h-3"></i>
+              </button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Action CTA Buttons -->
+      <div class="hero-actions w-full max-w-lg mx-auto flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-2 sm:gap-4 mt-3 mb-6 relative z-20">
+        <button class="book-test-ride-trigger w-full sm:w-auto px-6 py-3 font-heading font-black text-sm sm:text-base uppercase tracking-wider text-black bg-ktm-orange cut-corner-btn flex items-center justify-center gap-2 transition-all duration-300 hover:bg-white hover:shadow-[0_0_35px_rgba(255,102,0,0.9)] hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(255,102,0,0.4)]">
+          <span>BOOK A TEST RIDE</span>
+          <i data-lucide="zap" class="w-4 h-4 fill-current"></i>
+        </button>
+
+        <div class="flex items-center gap-2 w-full sm:w-auto">
+          <a href="#engineering" class="flex-1 sm:flex-none px-4 sm:px-5 py-3 font-heading font-black text-xs sm:text-sm uppercase tracking-wider text-white bg-zinc-900/80 border border-orange-500/40 cut-corner-btn-rev flex items-center justify-center gap-1.5 transition-all duration-300 hover:border-ktm-orange hover:bg-orange-500/20 hover:scale-105 active:scale-95 text-center">
+            <span>EXPLORE</span>
+            <i data-lucide="arrow-down-right" class="w-4 h-4 text-ktm-orange"></i>
+          </a>
+
+          <button id="hero-rev-btn" class="flex-1 sm:flex-none px-4 sm:px-5 py-3 font-heading font-bold text-xs uppercase tracking-wider text-orange-400 bg-black/60 border border-orange-500/30 rounded-lg flex items-center justify-center gap-1.5 transition-all duration-200 hover:bg-orange-500/10 hover:border-orange-500 hover:text-white group">
+            <i data-lucide="volume-2" class="w-3.5 h-3.5 text-ktm-orange group-hover:scale-125 transition-transform"></i>
+            <span>REV</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- HERO LIVE TELEMETRY STRIP & INNOVATION MATRIX (DIRECT SEAMLESS FLOW) -->
+    <div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 w-full mt-2">
+      
+      <!-- Primary 4-Stat Telemetry Bar -->
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 p-4 sm:p-6 rounded-2xl border-2 border-orange-500/40 bg-zinc-950/95 backdrop-blur-2xl shadow-[0_10px_40px_rgba(255,102,0,0.25)]">
+        
+        <!-- Metric 1 -->
+        <div class="telemetry-card p-3 sm:p-4 border-l-2 border-ktm-orange pl-4 bg-zinc-900/50 rounded-r-xl">
+          <div class="flex items-center justify-between">
+            <span class="text-[10px] sm:text-xs font-mono uppercase tracking-widest text-zinc-400">DISPLACEMENT</span>
+            <i data-lucide="gauge" class="w-4 h-4 text-ktm-orange"></i>
+          </div>
+          <div class="font-heading font-black text-2xl sm:text-4xl text-white flex items-baseline gap-1 my-1">
+            <span class="counter" data-target="399">0</span>
+            <span class="text-xs sm:text-sm text-ktm-orange font-mono">CC</span>
+          </div>
+          <span class="text-[11px] text-zinc-400 font-sans block">LC4c Single-Cylinder DOHC</span>
+        </div>
+
+        <!-- Metric 2 -->
+        <div class="telemetry-card p-3 sm:p-4 border-l-2 border-ktm-orange pl-4 bg-zinc-900/50 rounded-r-xl">
+          <div class="flex items-center justify-between">
+            <span class="text-[10px] sm:text-xs font-mono uppercase tracking-widest text-zinc-400">PEAK POWER</span>
+            <i data-lucide="flame" class="w-4 h-4 text-ktm-orange"></i>
+          </div>
+          <div class="font-heading font-black text-2xl sm:text-4xl text-white flex items-baseline gap-1 my-1">
+            <span class="counter" data-target="45">0</span>
+            <span class="text-xs sm:text-sm text-ktm-orange font-mono">PS / 33 kW</span>
+          </div>
+          <span class="text-[11px] text-zinc-400 font-sans block">@ 8,500 RPM (44.25 HP)</span>
+        </div>
+
+        <!-- Metric 3 -->
+        <div class="telemetry-card p-3 sm:p-4 border-l-2 border-ktm-orange pl-4 bg-zinc-900/50 rounded-r-xl">
+          <div class="flex items-center justify-between">
+            <span class="text-[10px] sm:text-xs font-mono uppercase tracking-widest text-zinc-400">0 - 100 KM/H</span>
+            <i data-lucide="zap" class="w-4 h-4 text-ktm-orange"></i>
+          </div>
+          <div class="font-heading font-black text-2xl sm:text-4xl text-white flex items-baseline gap-1 my-1">
+            <span class="counter" data-target="4.8" data-decimals="1">0</span>
+            <span class="text-xs sm:text-sm text-ktm-orange font-mono">SEC</span>
+          </div>
+          <span class="text-[11px] text-zinc-400 font-sans block">Launch Control Equipped</span>
+        </div>
+
+        <!-- Metric 4 -->
+        <div class="telemetry-card p-3 sm:p-4 border-l-2 border-ktm-orange pl-4 bg-zinc-900/50 rounded-r-xl">
+          <div class="flex items-center justify-between">
+            <span class="text-[10px] sm:text-xs font-mono uppercase tracking-widest text-zinc-400">TOP SPEED</span>
+            <i data-lucide="activity" class="w-4 h-4 text-ktm-orange"></i>
+          </div>
+          <div class="font-heading font-black text-2xl sm:text-4xl text-white flex items-baseline gap-1 my-1">
+            <span class="counter" data-target="168">0</span>
+            <span class="text-xs sm:text-sm text-ktm-orange font-mono">KM/H</span>
+          </div>
+          <span class="text-[11px] text-zinc-400 font-sans block">Aero-Optimized Winglets</span>
+        </div>
+
+      </div>
+
+      <!-- Innovation Quick Highlights Bar -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mt-4">
+        
+        <div class="p-3.5 rounded-xl border border-white/10 bg-black/80 flex items-center gap-3">
+          <div class="w-9 h-9 rounded-lg bg-orange-500/10 border border-orange-500/30 flex items-center justify-center text-ktm-orange shrink-0">
+            <i data-lucide="shield" class="w-4 h-4"></i>
+          </div>
+          <div>
+            <span class="text-[10px] font-mono uppercase text-orange-400 font-bold block">TRELLIS CHASSIS</span>
+            <span class="text-xs text-zinc-300 font-sans">2-Piece Steel & Aluminum Subframe</span>
+          </div>
+        </div>
+
+        <div class="p-3.5 rounded-xl border border-white/10 bg-black/80 flex items-center gap-3">
+          <div class="w-9 h-9 rounded-lg bg-orange-500/10 border border-orange-500/30 flex items-center justify-center text-ktm-orange shrink-0">
+            <i data-lucide="sliders" class="w-4 h-4"></i>
+          </div>
+          <div>
+            <span class="text-[10px] font-mono uppercase text-orange-400 font-bold block">WP APEX 43MM</span>
+            <span class="text-xs text-zinc-300 font-sans">5-Click Adj Compression & Rebound</span>
+          </div>
+        </div>
+
+        <div class="p-3.5 rounded-xl border border-white/10 bg-black/80 flex items-center gap-3">
+          <div class="w-9 h-9 rounded-lg bg-orange-500/10 border border-orange-500/30 flex items-center justify-center text-ktm-orange shrink-0">
+            <i data-lucide="crosshair" class="w-4 h-4"></i>
+          </div>
+          <div>
+            <span class="text-[10px] font-mono uppercase text-orange-400 font-bold block">CORNERING MTC</span>
+            <span class="text-xs text-zinc-300 font-sans">Lean Sensitive + Supermoto ABS</span>
+          </div>
+        </div>
+
+        <div class="p-3.5 rounded-xl border border-white/10 bg-black/80 flex items-center gap-3">
+          <div class="w-9 h-9 rounded-lg bg-orange-500/10 border border-orange-500/30 flex items-center justify-center text-ktm-orange shrink-0">
+            <i data-lucide="cpu" class="w-4 h-4"></i>
+          </div>
+          <div>
+            <span class="text-[10px] font-mono uppercase text-orange-400 font-bold block">5" TFT DASH</span>
+            <span class="text-xs text-zinc-300 font-sans">KTMconnect Bluetooth Telemetry</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ANGULAR TRELLIS SECTION DIVIDER -->
+  <div class="relative w-full h-16 bg-black overflow-hidden pointer-events-none">
+    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-ktm-orange/30 to-transparent"></div>
+    <div class="trellis-divider w-full h-full"></div>
+  </div>
+
+  <!-- SPECS & PERFORMANCE SECTION -->
+  <section id="specs" class="relative py-24 bg-zinc-950 overflow-hidden">
+    
+    <!-- Background Decor -->
+    <div class="absolute -right-40 top-1/4 w-96 h-96 bg-ktm-orange/10 blur-[130px] rounded-full pointer-events-none"></div>
+    <div class="absolute -left-40 bottom-1/4 w-96 h-96 bg-ktm-orange/10 blur-[130px] rounded-full pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-6 relative z-10">
+      
+      <!-- Section Header -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 pb-6 border-b border-white/10 gap-6">
+        <div>
+          <div class="flex items-center gap-2 font-mono text-xs uppercase tracking-[0.3em] text-ktm-orange mb-2">
+            <span class="w-4 h-0.5 bg-ktm-orange"></span>
+            <span>DATA LOG // PERFORMANCE METRICS</span>
+          </div>
+          <h2 class="font-heading font-black text-4xl sm:text-6xl uppercase tracking-tight text-white">
+            UNRIVALED <span class="text-ktm-orange italic">POWER & CONTROL</span>
+          </h2>
+        </div>
+        <p class="text-zinc-400 max-w-md font-sans text-sm leading-relaxed">
+          Engineered from decades of MotoGP and Dakar championship pedigree. The next-generation Duke 390 rewrites the rulebook with segment-first rider aids and raw torque.
+        </p>
+      </div>
+
+      <!-- Animated Big Stat Gauges -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+        
+        <!-- Stat Card 1 -->
+        <div class="spec-glass-card group relative p-6 rounded-xl border border-white/10 bg-black/60 backdrop-blur-xl transition-all duration-300 hover:border-orange-500 hover:-translate-y-1.5 hover:shadow-[0_10px_30px_rgba(255,102,0,0.25)]">
+          <div class="absolute top-0 right-0 w-16 h-16 bg-ktm-orange/10 rounded-bl-full transition-all group-hover:scale-125"></div>
+          <div class="w-12 h-12 rounded-lg bg-orange-500/10 border border-orange-500/30 flex items-center justify-center text-ktm-orange mb-6 group-hover:bg-ktm-orange group-hover:text-black transition-colors">
+            <i data-lucide="gauge" class="w-6 h-6"></i>
+          </div>
+          <span class="text-xs font-mono uppercase tracking-widest text-zinc-400">DISPLACEMENT</span>
+          <div class="font-heading font-black text-5xl text-white my-2 flex items-baseline gap-1">
+            <span class="counter" data-target="399">0</span>
+            <span class="text-xl text-ktm-orange">CC</span>
+          </div>
+          <div class="w-full bg-zinc-800 h-1.5 rounded-full overflow-hidden my-3">
+            <div class="bg-gradient-to-r from-orange-600 to-orange-400 h-full w-[95%] transition-all duration-1000"></div>
+          </div>
+          <p class="text-xs text-zinc-400">Optimized cylinder head and enlarged airbox delivering higher torque across entire rev range.</p>
+        </div>
+
+        <!-- Stat Card 2 -->
+        <div class="spec-glass-card group relative p-6 rounded-xl border border-white/10 bg-black/60 backdrop-blur-xl transition-all duration-300 hover:border-orange-500 hover:-translate-y-1.5 hover:shadow-[0_10px_30px_rgba(255,102,0,0.25)]">
+          <div class="absolute top-0 right-0 w-16 h-16 bg-ktm-orange/10 rounded-bl-full transition-all group-hover:scale-125"></div>
+          <div class="w-12 h-12 rounded-lg bg-orange-500/10 border border-orange-500/30 flex items-center justify-center text-ktm-orange mb-6 group-hover:bg-ktm-orange group-hover:text-black transition-colors">
+            <i data-lucide="flame" class="w-6 h-6"></i>
+          </div>
+          <span class="text-xs font-mono uppercase tracking-widest text-zinc-400">PEAK OUTPUT</span>
+          <div class="font-heading font-black text-5xl text-white my-2 flex items-baseline gap-1">
+            <span class="counter" data-target="45">0</span>
+            <span class="text-xl text-ktm-orange">PS</span>
+          </div>
+          <div class="w-full bg-zinc-800 h-1.5 rounded-full overflow-hidden my-3">
+            <div class="bg-gradient-to-r from-orange-600 to-orange-400 h-full w-[92%] transition-all duration-1000"></div>
+          </div>
+          <p class="text-xs text-zinc-400">33 kW (44.25 HP) with class-leading power-to-weight ratio for explosive acceleration.</p>
+        </div>
+
+        <!-- Stat Card 3 -->
+        <div class="spec-glass-card group relative p-6 rounded-xl border border-white/10 bg-black/60 backdrop-blur-xl transition-all duration-300 hover:border-orange-500 hover:-translate-y-1.5 hover:shadow-[0_10px_30px_rgba(255,102,0,0.25)]">
+          <div class="absolute top-0 right-0 w-16 h-16 bg-ktm-orange/10 rounded-bl-full transition-all group-hover:scale-125"></div>
+          <div class="w-12 h-12 rounded-lg bg-orange-500/10 border border-orange-500/30 flex items-center justify-center text-ktm-orange mb-6 group-hover:bg-ktm-orange group-hover:text-black transition-colors">
+            <i data-lucide="activity" class="w-6 h-6"></i>
+          </div>
+          <span class="text-xs font-mono uppercase tracking-widest text-zinc-400">TORQUE PULL</span>
+          <div class="font-heading font-black text-5xl text-white my-2 flex items-baseline gap-1">
+            <span class="counter" data-target="39">0</span>
+            <span class="text-xl text-ktm-orange">NM</span>
+          </div>
+          <div class="w-full bg-zinc-800 h-1.5 rounded-full overflow-hidden my-3">
+            <div class="bg-gradient-to-r from-orange-600 to-orange-400 h-full w-[88%] transition-all duration-1000"></div>
+          </div>
+          <p class="text-xs text-zinc-400">Torque peak at 7,000 RPM with punchy low-end throttle response via Ride-by-Wire.</p>
+        </div>
+
+        <!-- Stat Card 4 -->
+        <div class="spec-glass-card group relative p-6 rounded-xl border border-white/10 bg-black/60 backdrop-blur-xl transition-all duration-300 hover:border-orange-500 hover:-translate-y-1.5 hover:shadow-[0_10px_30px_rgba(255,102,0,0.25)]">
+          <div class="absolute top-0 right-0 w-16 h-16 bg-ktm-orange/10 rounded-bl-full transition-all group-hover:scale-125"></div>
+          <div class="w-12 h-12 rounded-lg bg-orange-500/10 border border-orange-500/30 flex items-center justify-center text-ktm-orange mb-6 group-hover:bg-ktm-orange group-hover:text-black transition-colors">
+            <i data-lucide="zap" class="w-6 h-6"></i>
+          </div>
+          <span class="text-xs font-mono uppercase tracking-widest text-zinc-400">TOP SPEED</span>
+          <div class="font-heading font-black text-5xl text-white my-2 flex items-baseline gap-1">
+            <span class="counter" data-target="168">0</span>
+            <span class="text-xl text-ktm-orange">KM/H</span>
+          </div>
+          <div class="w-full bg-zinc-800 h-1.5 rounded-full overflow-hidden my-3">
+            <div class="bg-gradient-to-r from-orange-600 to-orange-400 h-full w-[96%] transition-all duration-1000"></div>
+          </div>
+          <p class="text-xs text-zinc-400">Aero-sculpted tank spoilers and curved radiator shroud slice through high-speed wind resistance.</p>
+        </div>
+
+      </div>
+
+      <!-- Interactive Spec Categorized Tabs -->
+      <div class="spec-tabs-container rounded-2xl border border-white/10 bg-black/80 backdrop-blur-2xl p-6 sm:p-8">
+        
+        <!-- Tab Selector Buttons -->
+        <div class="flex flex-wrap gap-3 pb-6 border-b border-white/10 mb-8">
+          <button class="spec-tab-btn active px-6 py-3 font-heading font-black text-sm uppercase tracking-wider text-black bg-ktm-orange cut-corner-btn transition-all duration-200" data-tab="engine">
+            01 // ENGINE & TRANSMISSION
+          </button>
+          <button class="spec-tab-btn px-6 py-3 font-heading font-black text-sm uppercase tracking-wider text-zinc-300 bg-zinc-900 border border-white/10 cut-corner-btn transition-all duration-200 hover:border-ktm-orange hover:text-white" data-tab="chassis">
+            02 // CHASSIS & SUSPENSION
+          </button>
+          <button class="spec-tab-btn px-6 py-3 font-heading font-black text-sm uppercase tracking-wider text-zinc-300 bg-zinc-900 border border-white/10 cut-corner-btn transition-all duration-200 hover:border-ktm-orange hover:text-white" data-tab="electronics">
+            03 // ELECTRONICS & RIDER AIDS
+          </button>
+          <button class="spec-tab-btn px-6 py-3 font-heading font-black text-sm uppercase tracking-wider text-zinc-300 bg-zinc-900 border border-white/10 cut-corner-btn transition-all duration-200 hover:border-ktm-orange hover:text-white" data-tab="dimensions">
+            04 // DIMENSIONS & BRAKES
+          </button>
+        </div>
+
+        <!-- Tab 1: Engine -->
+        <div id="tab-engine" class="spec-tab-panel grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="p-4 rounded-lg bg-zinc-900/60 border border-white/5">
+            <span class="text-xs font-mono text-ktm-orange uppercase">ENGINE TYPE</span>
+            <h4 class="font-heading font-bold text-lg text-white mt-1">Single-Cylinder, 4-Stroke, DOHC 4-Valve</h4>
+            <p class="text-xs text-zinc-400 mt-2">Liquid cooled with curved radiator and dual fan assistance.</p>
+          </div>
+          <div class="p-4 rounded-lg bg-zinc-900/60 border border-white/5">
+            <span class="text-xs font-mono text-ktm-orange uppercase">BORE X STROKE</span>
+            <h4 class="font-heading font-bold text-lg text-white mt-1">89 mm x 64 mm</h4>
+            <p class="text-xs text-zinc-400 mt-2">Short-stroke architecture offering instantaneous high-rev response.</p>
+          </div>
+          <div class="p-4 rounded-lg bg-zinc-900/60 border border-white/5">
+            <span class="text-xs font-mono text-ktm-orange uppercase">TRANSMISSION</span>
+            <h4 class="font-heading font-bold text-lg text-white mt-1">6-Speed with PASC Slipper Clutch</h4>
+            <p class="text-xs text-zinc-400 mt-2">Equipped with Quickshifter+ for clutchless up and down shifts.</p>
+          </div>
+          <div class="p-4 rounded-lg bg-zinc-900/60 border border-white/5">
+            <span class="text-xs font-mono text-ktm-orange uppercase">FUEL MANAGEMENT</span>
+            <h4 class="font-heading font-bold text-lg text-white mt-1">Bosch EFI with 46mm Throttle Body</h4>
+            <p class="text-xs text-zinc-400 mt-2">Full Ride-by-Wire with switchable throttle response mappings.</p>
+          </div>
+          <div class="p-4 rounded-lg bg-zinc-900/60 border border-white/5">
+            <span class="text-xs font-mono text-ktm-orange uppercase">EXHAUST SYSTEM</span>
+            <h4 class="font-heading font-bold text-lg text-white mt-1">Stainless Steel Underslung Exhaust</h4>
+            <p class="text-xs text-zinc-400 mt-2">Euro 5.2 compliant with optimized center of gravity placement.</p>
+          </div>
+          <div class="p-4 rounded-lg bg-zinc-900/60 border border-white/5">
+            <span class="text-xs font-mono text-ktm-orange uppercase">STARTING / IGNITION</span>
+            <h4 class="font-heading font-bold text-lg text-white mt-1">Electric Start & Bosch EMS</h4>
+            <p class="text-xs text-zinc-400 mt-2">Integrated launch control mapping for maximum standing start holeshot.</p>
+          </div>
+        </div>
+
+        <!-- Tab 2: Chassis -->
+        <div id="tab-chassis" class="spec-tab-panel hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="p-4 rounded-lg bg-zinc-900/60 border border-white/5">
+            <span class="text-xs font-mono text-ktm-orange uppercase">MAIN FRAME</span>
+            <h4 class="font-heading font-bold text-lg text-white mt-1">Steel Trellis Frame, Powder Coated</h4>
+            <p class="text-xs text-zinc-400 mt-2">Signature KTM Orange structural cage with optimized torsional rigidity.</p>
+          </div>
+          <div class="p-4 rounded-lg bg-zinc-900/60 border border-white/5">
+            <span class="text-xs font-mono text-ktm-orange uppercase">SUBFRAME</span>
+            <h4 class="font-heading font-bold text-lg text-white mt-1">Die-Cast Aluminum Subframe</h4>
+            <p class="text-xs text-zinc-400 mt-2">2-piece design reduces weight while increasing structural load support.</p>
+          </div>
+          <div class="p-4 rounded-lg bg-zinc-900/60 border border-white/5">
+            <span class="text-xs font-mono text-ktm-orange uppercase">FRONT SUSPENSION</span>
+            <h4 class="font-heading font-bold text-lg text-white mt-1">WP APEX 43mm Inverted Forks</h4>
+            <p class="text-xs text-zinc-400 mt-2">5-click compression and 5-click rebound damping adjustable on fork caps.</p>
+          </div>
+          <div class="p-4 rounded-lg bg-zinc-900/60 border border-white/5">
+            <span class="text-xs font-mono text-ktm-orange uppercase">REAR SUSPENSION</span>
+            <h4 class="font-heading font-bold text-lg text-white mt-1">WP APEX Off-Center Monoshock</h4>
+            <p class="text-xs text-zinc-400 mt-2">5-step preload and 5-click rebound damping adjustable shock.</p>
+          </div>
+          <div class="p-4 rounded-lg bg-zinc-900/60 border border-white/5">
+            <span class="text-xs font-mono text-ktm-orange uppercase">SWINGARM</span>
+            <h4 class="font-heading font-bold text-lg text-white mt-1">Curved Gravity Die-Cast Swingarm</h4>
+            <p class="text-xs text-zinc-400 mt-2">Accommodates the off-center shock and creates direct rear tire contact feel.</p>
+          </div>
+          <div class="p-4 rounded-lg bg-zinc-900/60 border border-white/5">
+            <span class="text-xs font-mono text-ktm-orange uppercase">SUSPENSION TRAVEL</span>
+            <h4 class="font-heading font-bold text-lg text-white mt-1">150 mm Front / 150 mm Rear</h4>
+            <p class="text-xs text-zinc-400 mt-2">Supple over rough city streets yet rock-solid on apex track curbs.</p>
+          </div>
+        </div>
+
+        <!-- Tab 3: Electronics -->
+        <div id="tab-electronics" class="spec-tab-panel hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="p-4 rounded-lg bg-zinc-900/60 border border-white/5">
+            <span class="text-xs font-mono text-ktm-orange uppercase">RIDE MODES</span>
+            <h4 class="font-heading font-bold text-lg text-white mt-1">STREET / RAIN / TRACK Modes</h4>
+            <p class="text-xs text-zinc-400 mt-2">TRACK mode brings full screen tachometer, lap timer, and launch control.</p>
+          </div>
+          <div class="p-4 rounded-lg bg-zinc-900/60 border border-white/5">
+            <span class="text-xs font-mono text-ktm-orange uppercase">LAUNCH CONTROL</span>
+            <h4 class="font-heading font-bold text-lg text-white mt-1">Standard Segment-First Launch Control</h4>
+            <p class="text-xs text-zinc-400 mt-2">Locks RPM at 7,000 for full-throttle standing start catapult launches.</p>
+          </div>
+          <div class="p-4 rounded-lg bg-zinc-900/60 border border-white/5">
+            <span class="text-xs font-mono text-ktm-orange uppercase">TRACTION CONTROL (MTC)</span>
+            <h4 class="font-heading font-bold text-lg text-white mt-1">Lean-Angle Sensitive Cornering MTC</h4>
+            <p class="text-xs text-zinc-400 mt-2">Continuously monitors lean angle and modulates throttle valve in milliseconds.</p>
+          </div>
+          <div class="p-4 rounded-lg bg-zinc-900/60 border border-white/5">
+            <span class="text-xs font-mono text-ktm-orange uppercase">SUPERMOTO ABS</span>
+            <h4 class="font-heading font-bold text-lg text-white mt-1">Bosch 9.3 MP 2-Channel ABS</h4>
+            <p class="text-xs text-zinc-400 mt-2">Supermoto mode disables rear ABS so riders can back it into tight hairpin turns.</p>
+          </div>
+          <div class="p-4 rounded-lg bg-zinc-900/60 border border-white/5">
+            <span class="text-xs font-mono text-ktm-orange uppercase">TFT COCKPIT DISPLAY</span>
+            <h4 class="font-heading font-bold text-lg text-white mt-1">5-Inch Bonded Glass Color TFT</h4>
+            <p class="text-xs text-zinc-400 mt-2">Bluetooth KTMconnect smartphone pairing for turn-by-turn navigation & music.</p>
+          </div>
+          <div class="p-4 rounded-lg bg-zinc-900/60 border border-white/5">
+            <span class="text-xs font-mono text-ktm-orange uppercase">LIGHTING</span>
+            <h4 class="font-heading font-bold text-lg text-white mt-1">Full LED Predatory Headlamp & DRLs</h4>
+            <p class="text-xs text-zinc-400 mt-2">Aggressive split headlight face with integrated auto-cancelling indicators.</p>
+          </div>
+        </div>
+
+        <!-- Tab 4: Dimensions & Brakes -->
+        <div id="tab-dimensions" class="spec-tab-panel hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="p-4 rounded-lg bg-zinc-900/60 border border-white/5">
+            <span class="text-xs font-mono text-ktm-orange uppercase">FRONT BRAKE</span>
+            <h4 class="font-heading font-bold text-lg text-white mt-1">320 mm Disc, 4-Piston Radial Caliper</h4>
+            <p class="text-xs text-zinc-400 mt-2">ByBre radial brake system offering race-grade lever bite and feedback.</p>
+          </div>
+          <div class="p-4 rounded-lg bg-zinc-900/60 border border-white/5">
+            <span class="text-xs font-mono text-ktm-orange uppercase">REAR BRAKE</span>
+            <h4 class="font-heading font-bold text-lg text-white mt-1">240 mm Disc, 2-Piston Floating Caliper</h4>
+            <p class="text-xs text-zinc-400 mt-2">Upgraded over previous generation for better heat dissipation.</p>
+          </div>
+          <div class="p-4 rounded-lg bg-zinc-900/60 border border-white/5">
+            <span class="text-xs font-mono text-ktm-orange uppercase">SEAT HEIGHT</span>
+            <h4 class="font-heading font-bold text-lg text-white mt-1">820 mm (Optional 800 mm Low Seat)</h4>
+            <p class="text-xs text-zinc-400 mt-2">Narrower stand-over width allows easy flat-foot confidence.</p>
+          </div>
+          <div class="p-4 rounded-lg bg-zinc-900/60 border border-white/5">
+            <span class="text-xs font-mono text-ktm-orange uppercase">FUEL TANK</span>
+            <h4 class="font-heading font-bold text-lg text-white mt-1">15 Liters Full-Metal Steel Tank</h4>
+            <p class="text-xs text-zinc-400 mt-2">Increased capacity for 400+ km extended riding range.</p>
+          </div>
+          <div class="p-4 rounded-lg bg-zinc-900/60 border border-white/5">
+            <span class="text-xs font-mono text-ktm-orange uppercase">TIRES</span>
+            <h4 class="font-heading font-bold text-lg text-white mt-1">110/70 R17 Front // 150/60 R17 Rear</h4>
+            <p class="text-xs text-zinc-400 mt-2">Premium radial sticky tires with open-hub alloy lightweight wheels.</p>
+          </div>
+          <div class="p-4 rounded-lg bg-zinc-900/60 border border-white/5">
+            <span class="text-xs font-mono text-ktm-orange uppercase">GROUND CLEARANCE</span>
+            <h4 class="font-heading font-bold text-lg text-white mt-1">183 mm</h4>
+            <p class="text-xs text-zinc-400 mt-2">Increased clearance for high-speed aggressive lean angles on track.</p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- EXPLODED VIEW & ENGINEERING DEEP-DIVE SECTION -->
+  <section id="engineering" class="relative py-28 bg-black overflow-hidden">
+    
+    <!-- Background Technical Lines & Grid -->
+    <div class="absolute inset-0 bg-carbon-grid opacity-20 pointer-events-none"></div>
+    <div class="absolute top-1/2 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-orange-500/20 to-transparent pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-6 relative z-10">
+      
+      <!-- Section Header -->
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-500/10 border border-orange-500/30 text-ktm-orange text-xs font-mono uppercase tracking-[0.25em] mb-4">
+          <i data-lucide="cpu" class="w-3.5 h-3.5"></i>
+          <span>EXPLODED BLUEPRINT ARCHITECTURE</span>
+        </div>
+        <h2 class="font-heading font-black text-4xl sm:text-6xl uppercase tracking-tight text-white">
+          GRAVITY DROP & <span class="text-ktm-orange italic">ANATOMY ROW</span>
+        </h2>
+        <p class="text-zinc-400 text-sm sm:text-base mt-4 font-sans">
+          Watch the background-isolated 2024 KTM Duke 390 plunge through the gravity runway on scroll, breaking apart into its 5 precision-engineered modular sub-systems in a synchronized horizontal row.
+        </p>
+      </div>
+
+      <!-- GRAVITY FALL RUNWAY STAGE (Background-Removed Bike Falling Animation) -->
+      <div id="scroll-fall-arena" class="relative w-full rounded-3xl border-2 border-orange-500/40 bg-zinc-950/90 backdrop-blur-2xl p-6 sm:p-10 mb-12 overflow-hidden shadow-[0_0_60px_rgba(255,102,0,0.2)]">
+        
+        <!-- Technical HUD Header & Interactive Action Bar -->
+        <div class="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-white/10 relative z-20">
+          <div class="flex items-center gap-3 font-mono text-xs text-zinc-300 uppercase">
+            <span class="inline-block w-2.5 h-2.5 rounded-full bg-ktm-orange animate-ping"></span>
+            <span class="font-bold text-white tracking-widest">RUNWAY 01 // GRAVITY DROP PHYSICS</span>
+          </div>
+
+          <!-- Interactive Controls: Auto-Drop Button & Atlantic Blue Badge -->
+          <div class="flex items-center gap-3 flex-wrap">
+            <!-- Atlantic Blue Badge -->
+            <div class="flex items-center gap-2 px-3 py-1.5 bg-blue-950/60 border border-blue-500/40 rounded-lg font-mono text-xs text-blue-400">
+              <span class="w-2 h-2 rounded-full bg-blue-400 animate-pulse"></span>
+              <span class="font-bold uppercase tracking-wider">ATLANTIC BLUE EDITION</span>
+            </div>
+
+            <!-- Instant Trigger Button -->
+            <button id="trigger-fall-btn" class="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-orange-600 to-ktm-orange text-black font-heading font-black text-xs uppercase tracking-wider rounded-lg transition-all duration-300 hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(255,102,0,0.5)]">
+              <i data-lucide="play" class="w-3.5 h-3.5 fill-black stroke-black"></i>
+              <span>PLAY GRAVITY DROP</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Vertical Runway Arena -->
+        <div class="relative w-full h-[420px] sm:h-[520px] flex flex-col items-center justify-between my-4 select-none">
+          
+          <!-- Background Laser Trajectory Lines & Altitude Markers -->
+          <div class="absolute inset-0 pointer-events-none flex justify-between px-4 sm:px-12 opacity-30">
+            <div class="h-full w-[1px] bg-gradient-to-b from-orange-500/80 via-orange-500/20 to-transparent flex flex-col justify-between py-6 font-mono text-[10px] text-orange-400">
+              <span>0.00 M // ENTRY</span>
+              <span>25.0 M // ACCEL</span>
+              <span>50.0 M // VELOCITY MAX</span>
+              <span>100.0 M // ROW SPLIT</span>
+            </div>
+            <!-- Center Laser Track -->
+            <div class="h-full w-[1px] bg-gradient-to-b from-orange-500 via-orange-500/40 to-orange-500/10 relative">
+              <div class="absolute top-0 -left-1 w-2.5 h-2.5 bg-ktm-orange rounded-full animate-ping"></div>
+            </div>
+            <div class="h-full w-[1px] bg-gradient-to-b from-orange-500/80 via-orange-500/20 to-transparent flex flex-col justify-between py-6 font-mono text-[10px] text-orange-400 text-right">
+              <span>G-FORCE: 0.00 G</span>
+              <span>PITCH: -2.4°</span>
+              <span>AERO DRAG: 0.28</span>
+              <span>STATUS: LOCKED</span>
+            </div>
+          </div>
+
+          <!-- Speed Trails (Glowing CSS vertical streak bars) -->
+          <div class="absolute inset-0 pointer-events-none overflow-hidden">
+            <div class="speed-trail speed-trail-1 absolute left-1/3 top-0 w-0.5 h-32 bg-gradient-to-b from-transparent via-orange-500/50 to-transparent opacity-0"></div>
+            <div class="speed-trail speed-trail-2 absolute right-1/3 top-0 w-0.5 h-44 bg-gradient-to-b from-transparent via-orange-500/60 to-transparent opacity-0"></div>
+          </div>
+
+          <!-- THE ISOLATED BACKGROUND-REMOVED FALLING DUKE 390 (ATLANTIC BLUE) -->
+          <div id="hero-falling-bike" class="relative z-30 w-full max-w-lg sm:max-w-2xl aspect-[16/10] flex items-center justify-center will-change-transform cursor-grab active:cursor-grabbing transition-shadow">
+            
+            <!-- Dynamic Pedestal Glow that follows the bike -->
+            <div class="absolute -bottom-6 left-1/2 -translate-x-1/2 w-3/4 h-16 bg-blue-500/25 blur-3xl rounded-full pointer-events-none"></div>
+
+            <!-- Crisp Background-Removed Atlantic Blue Bike Cutout -->
+            <img id="falling-bike-img" 
+                 src="assets/duke-atlantic-blue.png" 
+                 alt="KTM 390 Duke Atlantic Blue Isolated Cutout" 
+                 class="w-full h-full object-contain filter drop-shadow-[0_15px_35px_rgba(0,0,0,0.9)] select-none pointer-events-none transform transition-transform duration-300">
+            
+            <!-- Live Overlay G-Force / Altitude Floating HUD -->
+            <div class="absolute -top-3 right-4 font-mono text-[10px] bg-black/90 px-3 py-1 rounded-full border border-orange-500/40 text-orange-400 flex items-center gap-2 shadow-lg">
+              <span id="fall-hud-speed">0 KM/H</span>
+              <span class="text-zinc-500">|</span>
+              <span id="fall-hud-alt">ALT: 100%</span>
+            </div>
+          </div>
+
+          <!-- Bottom Drop Catch / Landing Horizon Line -->
+          <div class="w-full pt-4 border-t border-dashed border-orange-500/30 flex items-center justify-between font-mono text-[10px] text-zinc-400 relative z-20">
+            <span class="text-ktm-orange font-bold flex items-center gap-1">
+              <i data-lucide="arrow-down" class="w-3.5 h-3.5"></i>
+              SCROLL DOWN TO INITIATE ROW DECONSTRUCTION
+            </span>
+            <span class="hidden sm:inline text-zinc-500 uppercase tracking-widest">
+              5 MODULAR LAYERS ALIGNING BELOW ↓
+            </span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Horizontal Exploded Components Row (Assembled on Scroll) -->
+      <div id="engineering-row-section" class="pt-6">
+        
+        <!-- Section Subtitle -->
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
+          <div>
+            <div class="flex items-center gap-2 font-mono text-xs uppercase tracking-[0.3em] text-ktm-orange mb-2">
+              <span class="w-4 h-0.5 bg-ktm-orange"></span>
+              <span>MECHANICAL DECONSTRUCTION // 5 CORE LAYERS</span>
+            </div>
+            <h3 class="font-heading font-black text-3xl sm:text-5xl uppercase tracking-tight text-white">
+              EXPLODED <span class="text-ktm-orange italic">COMPONENT ROW</span>
+            </h3>
+          </div>
+          <p class="text-zinc-400 text-xs sm:text-sm max-w-md font-sans">
+            As the machine drops through the runway, it separates into 5 core sub-systems aligned in a precision horizontal row. Hover or tap any component to inspect telemetry.
+          </p>
+        </div>
+
+        <!-- 5-Component Interactive Horizontal Row -->
+        <div id="component-row-track" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+          
+          <!-- Component 1: Trellis Frame -->
+          <div class="component-row-card group relative p-5 rounded-2xl border border-white/10 bg-zinc-950/90 backdrop-blur-xl transition-all duration-300 cursor-pointer overflow-hidden" 
+               data-title="01 // 2-PIECE TRELLIS FRAME & ALUMINUM SUBFRAME" 
+               data-desc="Hydroformed steel trellis with orange powder coat providing maximum torsional stiffness and rider feedback on corner apexes." 
+               data-spec1="-1.8 KG WEIGHT" 
+               data-spec2="+18% TORSIONAL STIFFNESS">
+            <div class="text-[10px] font-mono text-orange-400 font-bold uppercase mb-2">01 // CHASSIS</div>
+            <div class="w-full aspect-square rounded-xl bg-black/80 flex items-center justify-center p-3 overflow-hidden border border-white/5 mb-4 group-hover:border-orange-500/40">
+              <img src="assets/duke-exploded.png" alt="Trellis Frame" class="w-full h-full object-contain filter contrast-125 transform group-hover:scale-110 transition-transform duration-500">
+            </div>
+            <h4 class="font-heading font-black text-lg text-white uppercase group-hover:text-ktm-orange transition-colors">Trellis Frame</h4>
+            <span class="text-xs text-zinc-400 font-sans block mt-1">25CrMo4 Steel Cage</span>
+            <div class="mt-3 pt-3 border-t border-white/10 flex justify-between text-[10px] font-mono">
+              <span class="text-orange-400 font-bold">-1.8 KG</span>
+              <span class="text-zinc-400">+18% RIGID</span>
+            </div>
+          </div>
+
+          <!-- Component 2: LC4c Engine -->
+          <div class="component-row-card group relative p-5 rounded-2xl border border-white/10 bg-zinc-950/90 backdrop-blur-xl transition-all duration-300 cursor-pointer overflow-hidden" 
+               data-title="02 // ALL-NEW LC4c 399cc DOHC POWERPLANT" 
+               data-desc="Single-cylinder 4-stroke with optimized cylinder head, larger airbox, Ride-by-Wire throttle, and segment-first Launch Control." 
+               data-spec1="45 PS @ 8,500 RPM" 
+               data-spec2="39 NM @ 7,000 RPM">
+            <div class="text-[10px] font-mono text-orange-400 font-bold uppercase mb-2">02 // POWERHOUSE</div>
+            <div class="w-full aspect-square rounded-xl bg-black/80 flex items-center justify-center p-3 overflow-hidden border border-white/5 mb-4 group-hover:border-orange-500/40">
+              <img src="assets/ktm_engine_isolated.png" alt="LC4c Engine" class="w-full h-full object-contain transform group-hover:scale-110 transition-transform duration-500">
+            </div>
+            <h4 class="font-heading font-black text-lg text-white uppercase group-hover:text-ktm-orange transition-colors">LC4c Engine</h4>
+            <span class="text-xs text-zinc-400 font-sans block mt-1">399cc DOHC 4-Valve</span>
+            <div class="mt-3 pt-3 border-t border-white/10 flex justify-between text-[10px] font-mono">
+              <span class="text-orange-400 font-bold">45 PS</span>
+              <span class="text-zinc-400">39 NM TORQUE</span>
+            </div>
+          </div>
+
+          <!-- Component 3: WP APEX Suspension -->
+          <div class="component-row-card group relative p-5 rounded-2xl border border-white/10 bg-zinc-950/90 backdrop-blur-xl transition-all duration-300 cursor-pointer overflow-hidden" 
+               data-title="03 // WP APEX 43mm INVERTED FORKS & MONOSHOCK" 
+               data-desc="Open cartridge inverted forks with toolless 5-click compression and rebound damping adjustment for track and street setups." 
+               data-spec1="5-CLICK ADJUSTABLE" 
+               data-spec2="150 MM TRAVEL">
+            <div class="text-[10px] font-mono text-orange-400 font-bold uppercase mb-2">03 // SUSPENSION</div>
+            <div class="w-full aspect-square rounded-xl bg-black/80 flex items-center justify-center p-3 overflow-hidden border border-white/5 mb-4 group-hover:border-orange-500/40">
+              <img src="assets/duke-exploded.png" alt="WP Suspension" class="w-full h-full object-contain filter contrast-125 transform scale-125 group-hover:scale-135 transition-transform duration-500">
+            </div>
+            <h4 class="font-heading font-black text-lg text-white uppercase group-hover:text-ktm-orange transition-colors">WP APEX 43mm</h4>
+            <span class="text-xs text-zinc-400 font-sans block mt-1">5-Click Toolless Adj</span>
+            <div class="mt-3 pt-3 border-t border-white/10 flex justify-between text-[10px] font-mono">
+              <span class="text-orange-400 font-bold">5-CLICK ADJ</span>
+              <span class="text-zinc-400">150 MM TRAVEL</span>
+            </div>
+          </div>
+
+          <!-- Component 4: ByBre Brakes -->
+          <div class="component-row-card group relative p-5 rounded-2xl border border-white/10 bg-zinc-950/90 backdrop-blur-xl transition-all duration-300 cursor-pointer overflow-hidden" 
+               data-title="04 // BYBRE 320mm RADIAL BRAKES & BIONIC WHEELS" 
+               data-desc="320mm perforated front disc with 4-piston radial caliper and Bosch 9.3 MP Cornering ABS with Supermoto disengageable mode." 
+               data-spec1="320 MM DISC" 
+               data-spec2="SUPERMOTO ABS">
+            <div class="text-[10px] font-mono text-orange-400 font-bold uppercase mb-2">04 // BRAKES & WHEELS</div>
+            <div class="w-full aspect-square rounded-xl bg-black/80 flex items-center justify-center p-3 overflow-hidden border border-white/5 mb-4 group-hover:border-orange-500/40">
+              <img src="assets/duke-exploded.png" alt="ByBre Brakes" class="w-full h-full object-contain filter contrast-125 transform group-hover:scale-110 transition-transform duration-500">
+            </div>
+            <h4 class="font-heading font-black text-lg text-white uppercase group-hover:text-ktm-orange transition-colors">ByBre Brakes</h4>
+            <span class="text-xs text-zinc-400 font-sans block mt-1">320mm Radial Caliper</span>
+            <div class="mt-3 pt-3 border-t border-white/10 flex justify-between text-[10px] font-mono">
+              <span class="text-orange-400 font-bold">320 MM ROTOR</span>
+              <span class="text-zinc-400">SUPERMOTO ABS</span>
+            </div>
+          </div>
+
+          <!-- Component 5: Underslung Exhaust -->
+          <div class="component-row-card group relative p-5 rounded-2xl border border-white/10 bg-zinc-950/90 backdrop-blur-xl transition-all duration-300 cursor-pointer overflow-hidden" 
+               data-title="05 // UNDERSLUNG STAINLESS STEEL EXHAUST" 
+               data-desc="Euro 5.2 compliant underslung silencer positioned at the lowest center of gravity, producing an aggressive single-cylinder roar." 
+               data-spec1="OPTIMIZED COG" 
+               data-spec2="EURO 5.2 COMPLIANT">
+            <div class="text-[10px] font-mono text-orange-400 font-bold uppercase mb-2">05 // EXHAUST SYSTEM</div>
+            <div class="w-full aspect-square rounded-xl bg-black/80 flex items-center justify-center p-3 overflow-hidden border border-white/5 mb-4 group-hover:border-orange-500/40">
+              <img src="assets/duke-exploded.png" alt="Underslung Exhaust" class="w-full h-full object-contain filter contrast-125 transform group-hover:scale-110 transition-transform duration-500">
+            </div>
+            <h4 class="font-heading font-black text-lg text-white uppercase group-hover:text-ktm-orange transition-colors">Underslung Exhaust</h4>
+            <span class="text-xs text-zinc-400 font-sans block mt-1">Stainless Tuned Resonator</span>
+            <div class="mt-3 pt-3 border-t border-white/10 flex justify-between text-[10px] font-mono">
+              <span class="text-orange-400 font-bold">LOW COG</span>
+              <span class="text-zinc-400">EURO 5.2</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Active Row Detail Display Box -->
+        <div class="mt-6 p-6 rounded-2xl border-2 border-orange-500/40 bg-zinc-950/90 backdrop-blur-xl flex flex-col md:flex-row md:items-center justify-between gap-6">
+          <div class="max-w-2xl">
+            <span class="text-[10px] font-mono uppercase text-orange-400 font-bold tracking-widest block mb-1">SELECTED SUB-SYSTEM // LIVE DATA</span>
+            <h4 id="row-detail-title" class="font-heading font-black text-2xl sm:text-3xl text-white uppercase">
+              01 // 2-PIECE TRELLIS FRAME & ALUMINUM SUBFRAME
+            </h4>
+            <p id="row-detail-desc" class="text-zinc-300 text-xs sm:text-sm mt-2 font-sans">
+              Hydroformed steel trellis with orange powder coat providing maximum torsional stiffness and rider feedback on corner apexes.
+            </p>
+          </div>
+          <div class="flex items-center gap-4 shrink-0">
+            <div class="p-3 bg-zinc-900/80 rounded-xl border border-white/10 text-center min-w-[120px]">
+              <span class="text-[10px] font-mono text-zinc-500 uppercase block">METRIC A</span>
+              <span id="row-detail-spec1" class="font-heading font-black text-lg text-orange-400">-1.8 KG WEIGHT</span>
+            </div>
+            <div class="p-3 bg-zinc-900/80 rounded-xl border border-white/10 text-center min-w-[120px]">
+              <span class="text-[10px] font-mono text-zinc-500 uppercase block">METRIC B</span>
+              <span id="row-detail-spec2" class="font-heading font-black text-lg text-white">+18% RIGID</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div id="scrub-section-trigger" class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        
+        <!-- Left: Exploded Interactive Canvas / Image Sequence (7 Cols) -->
+        <div class="lg:col-span-7 relative group">
+          <div class="relative rounded-2xl border-2 border-orange-500/40 bg-zinc-950/90 p-4 sm:p-6 backdrop-blur-xl overflow-hidden shadow-[0_0_50px_rgba(255,102,0,0.2)]">
+            
+            <!-- Technical Watermark overlay -->
+            <div class="flex items-center justify-between font-mono text-[10px] text-zinc-400 uppercase tracking-widest pb-3 border-b border-white/10 mb-3">
+              <span class="text-ktm-orange flex items-center gap-1.5 font-bold">
+                <i data-lucide="layers" class="w-3.5 h-3.5"></i>
+                SCROLL-CONTROLLED EXPLODED SEQUENCE (100 FRAMES)
+              </span>
+              <span id="scrub-frame-val" class="px-2 py-0.5 bg-zinc-900 rounded border border-white/10 text-white font-bold">
+                001 / 100
+              </span>
+            </div>
+            
+            <!-- Scroll Scrubber HTML5 Canvas Viewport -->
+            <div class="relative w-full aspect-[16/10] sm:aspect-[16/9] rounded-xl overflow-hidden bg-black flex items-center justify-center border border-white/10">
+              <canvas id="exploded-scrub-canvas" class="w-full h-full object-contain"></canvas>
+
+              <!-- Interactive Pulsing Hotspot Pins -->
+              <button class="hotspot-pin absolute top-[28%] left-[48%] -translate-x-1/2 -translate-y-1/2" data-part="frame">
+                <span class="hotspot-ring"></span>
+                <span class="hotspot-dot">01</span>
+                <span class="hotspot-label">Trellis Frame</span>
+              </button>
+
+              <button class="hotspot-pin absolute top-[52%] left-[46%] -translate-x-1/2 -translate-y-1/2" data-part="engine">
+                <span class="hotspot-ring"></span>
+                <span class="hotspot-dot">02</span>
+                <span class="hotspot-label">LC4c Engine</span>
+              </button>
+
+              <button class="hotspot-pin absolute top-[35%] left-[75%] -translate-x-1/2 -translate-y-1/2" data-part="forks">
+                <span class="hotspot-ring"></span>
+                <span class="hotspot-dot">03</span>
+                <span class="hotspot-label">WP APEX Forks</span>
+              </button>
+
+              <button class="hotspot-pin absolute top-[70%] left-[75%] -translate-x-1/2 -translate-y-1/2" data-part="brakes">
+                <span class="hotspot-ring"></span>
+                <span class="hotspot-dot">04</span>
+                <span class="hotspot-label">ByBre Brakes</span>
+              </button>
+
+              <button class="hotspot-pin absolute top-[68%] left-[22%] -translate-x-1/2 -translate-y-1/2" data-part="wheels">
+                <span class="hotspot-ring"></span>
+                <span class="hotspot-dot">05</span>
+                <span class="hotspot-label">Bionic Wheels</span>
+              </button>
+
+              <button class="hotspot-pin absolute top-[74%] left-[48%] -translate-x-1/2 -translate-y-1/2" data-part="exhaust">
+                <span class="hotspot-ring"></span>
+                <span class="hotspot-dot">06</span>
+                <span class="hotspot-label">Underslung Exhaust</span>
+              </button>
+            </div>
+
+            <!-- Interactive Scrubber Timeline Track -->
+            <div class="mt-4 pt-3 border-t border-white/10 flex flex-col gap-2.5">
+              <div class="flex items-center justify-between text-xs font-mono text-zinc-400">
+                <span class="flex items-center gap-1.5 text-orange-400">
+                  <i data-lucide="mouse-pointer" class="w-3.5 h-3.5"></i>
+                  SCROLL DOWN TO DISASSEMBLE // SCROLL UP TO REBUILD
+                </span>
+                <button id="scrub-play-btn" class="px-3 py-1 bg-zinc-900 hover:bg-ktm-orange hover:text-black rounded border border-orange-500/40 text-[11px] font-heading font-bold uppercase tracking-wider text-zinc-200 transition-colors flex items-center gap-1.5">
+                  <i data-lucide="play" class="w-3.5 h-3.5"></i>
+                  <span>AUTO-PLAY</span>
+                </button>
+              </div>
+
+              <!-- Range Slider -->
+              <div class="flex items-center gap-3">
+                <span class="text-[10px] font-mono text-zinc-500">ASSEMBLED</span>
+                <input 
+                  id="scrub-slider" 
+                  type="range" 
+                  min="1" 
+                  max="100" 
+                  value="1" 
+                  class="w-full accent-orange-500 cursor-ew-resize bg-zinc-800 h-2 rounded-lg"
+                />
+                <span class="text-[10px] font-mono text-orange-400 font-bold">EXPLODED</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Right: Dynamic Part Detail Cards (5 Cols) -->
+        <div class="lg:col-span-5 flex flex-col gap-4">
+          
+          <!-- Detail Card (Dynamically Updated) -->
+          <div id="engineering-active-card" class="p-6 sm:p-8 rounded-2xl border-2 border-ktm-orange bg-zinc-950/90 backdrop-blur-2xl shadow-[0_0_35px_rgba(255,102,0,0.25)] transition-all duration-300">
+            <div class="flex items-center justify-between mb-4">
+              <span id="active-part-number" class="font-mono text-xs font-bold text-ktm-orange uppercase tracking-widest px-3 py-1 bg-orange-500/10 rounded-full border border-orange-500/30">
+                01 // SUB-SYSTEM
+              </span>
+              <span class="text-zinc-500 font-mono text-xs">MATERIAL: 25CrMo4 STEEL</span>
+            </div>
+            
+            <h3 id="active-part-title" class="font-heading font-black text-2xl sm:text-3xl text-white uppercase tracking-tight">
+              TRELLIS MAIN FRAME & DIE-CAST SUBFRAME
+            </h3>
+
+            <p id="active-part-desc" class="text-zinc-300 text-sm leading-relaxed mt-4 font-sans">
+              The signature steel trellis frame provides legendary torsional rigidity while providing rider-feedback on full lean angles. Coupled with an all-new forged aluminum subframe to reduce tail weight.
+            </p>
+
+            <div class="mt-6 pt-6 border-t border-white/10 grid grid-cols-2 gap-4">
+              <div>
+                <span class="text-[10px] font-mono text-zinc-500 uppercase">WEIGHT SAVINGS</span>
+                <div id="active-part-metric1" class="font-heading font-black text-xl text-orange-400">-1.8 KG</div>
+              </div>
+              <div>
+                <span class="text-[10px] font-mono text-zinc-500 uppercase">TORSIONAL STIFFNESS</span>
+                <div id="active-part-metric2" class="font-heading font-black text-xl text-white">+18% RIGID</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Selector Buttons -->
+          <div class="grid grid-cols-3 gap-2">
+            <button class="part-quick-btn active p-3 rounded-lg border border-orange-500 bg-orange-500/20 text-white font-heading font-bold text-xs uppercase text-left transition-all hover:border-ktm-orange" data-part="frame">
+              01 Trellis
+            </button>
+            <button class="part-quick-btn p-3 rounded-lg border border-white/10 bg-zinc-900 text-zinc-400 font-heading font-bold text-xs uppercase text-left transition-all hover:border-ktm-orange hover:text-white" data-part="engine">
+              02 LC4c Engine
+            </button>
+            <button class="part-quick-btn p-3 rounded-lg border border-white/10 bg-zinc-900 text-zinc-400 font-heading font-bold text-xs uppercase text-left transition-all hover:border-ktm-orange hover:text-white" data-part="forks">
+              03 WP Forks
+            </button>
+            <button class="part-quick-btn p-3 rounded-lg border border-white/10 bg-zinc-900 text-zinc-400 font-heading font-bold text-xs uppercase text-left transition-all hover:border-ktm-orange hover:text-white" data-part="brakes">
+              04 ByBre Brakes
+            </button>
+            <button class="part-quick-btn p-3 rounded-lg border border-white/10 bg-zinc-900 text-zinc-400 font-heading font-bold text-xs uppercase text-left transition-all hover:border-ktm-orange hover:text-white" data-part="wheels">
+              05 Wheels
+            </button>
+            <button class="part-quick-btn p-3 rounded-lg border border-white/10 bg-zinc-900 text-zinc-400 font-heading font-bold text-xs uppercase text-left transition-all hover:border-ktm-orange hover:text-white" data-part="exhaust">
+              06 Exhaust
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- COLORWAYS & 360 LIVERY CONFIGURATOR SECTION -->
+  <section id="colorways" class="relative py-28 bg-zinc-950 overflow-hidden">
+    
+    <!-- Background Orange Ambient Flare -->
+    <div id="colorway-ambient-glow" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-ktm-orange/20 rounded-full blur-[140px] pointer-events-none transition-all duration-700"></div>
+
+    <div class="max-w-7xl mx-auto px-6 relative z-10">
+      
+      <!-- Section Header -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 pb-6 border-b border-white/10 gap-6">
+        <div>
+          <div class="flex items-center gap-2 font-mono text-xs uppercase tracking-[0.3em] text-ktm-orange mb-2">
+            <span class="w-4 h-0.5 bg-ktm-orange"></span>
+            <span>CUSTOMIZE YOUR BEAST</span>
+          </div>
+          <h2 class="font-heading font-black text-4xl sm:text-6xl uppercase tracking-tight text-white">
+            OFFICIAL <span class="text-ktm-orange italic">COLORWAYS</span>
+          </h2>
+        </div>
+        <p class="text-zinc-400 max-w-md font-sans text-sm leading-relaxed">
+          Select between KTM's iconic high-gloss Electronic Orange race livery, the striking Atlantic Blue contrast edition, or Stealth Carbon.
+        </p>
+      </div>
+
+      <!-- Colorway Viewer Card -->
+      <div class="relative rounded-3xl border border-white/10 bg-black/80 backdrop-blur-2xl p-6 sm:p-10 shadow-2xl overflow-hidden">
+        
+        <!-- Live Colorway Stage Display -->
+        <div class="relative w-full aspect-[16/9] max-h-[550px] flex items-center justify-center overflow-hidden rounded-2xl bg-zinc-950/60 p-4">
+          
+          <!-- Motorcycle Dynamic Preview Image -->
+          <img 
+            id="colorway-bike-img" 
+            src="assets/ktm_duke_390_orange.jpg" 
+            alt="KTM 390 Duke Electronic Orange" 
+            class="w-full h-full object-contain filter drop-shadow-[0_20px_40px_rgba(255,102,0,0.3)] transition-all duration-500 transform scale-100"
+          />
+
+          <!-- Colorway Info Tag Overlay -->
+          <div class="absolute bottom-6 left-6 p-4 rounded-xl border border-white/10 bg-black/80 backdrop-blur-md">
+            <div class="flex items-center gap-2 mb-1">
+              <span id="colorway-pill-dot" class="w-3 h-3 rounded-full bg-ktm-orange shadow-[0_0_10px_#FF6600]"></span>
+              <span id="colorway-name-text" class="font-heading font-black text-xl text-white tracking-wider">ELECTRONIC ORANGE</span>
+            </div>
+            <p id="colorway-desc-text" class="text-xs text-zinc-400 font-sans max-w-xs">
+              Signature KTM high-gloss Tangerine Orange bodywork with matte black tank spoilers and orange trellis frame.
+            </p>
+          </div>
+
+          <!-- 360 / Angle Rotation hint -->
+          <div class="absolute top-6 right-6 flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/10 bg-black/80 font-mono text-[11px] text-zinc-300">
+            <i data-lucide="sparkles" class="w-3.5 h-3.5 text-ktm-orange"></i>
+            <span>MY24 REVOLUTION EDITION</span>
+          </div>
+
+        </div>
+
+        <!-- Color Selector Swatches -->
+        <div class="mt-8 flex flex-col sm:flex-row items-center justify-between gap-6 pt-6 border-t border-white/10">
+          
+          <div class="flex items-center gap-4">
+            <span class="font-heading font-bold text-sm uppercase tracking-widest text-zinc-400">SELECT LIVERY:</span>
+            
+            <div class="flex items-center gap-3">
+              <!-- Swatch 1: Electronic Orange -->
+              <button class="colorway-btn active flex items-center gap-2.5 px-4 py-2 rounded-full border-2 border-ktm-orange bg-black/60 transition-all duration-300 hover:scale-105" data-color="orange" data-img="assets/ktm_duke_390_orange.jpg" data-name="ELECTRONIC ORANGE" data-desc="Signature KTM high-gloss Tangerine Orange bodywork with matte black tank spoilers and orange trellis frame." data-hex="#FF6600">
+                <span class="w-4 h-4 rounded-full bg-[#FF6600] shadow-[0_0_10px_#FF6600]"></span>
+                <span class="font-heading font-black text-xs uppercase tracking-wider text-white">ELECTRONIC ORANGE</span>
+              </button>
+
+              <!-- Swatch 2: Atlantic Blue -->
+              <button class="colorway-btn flex items-center gap-2.5 px-4 py-2 rounded-full border border-white/20 bg-black/60 transition-all duration-300 hover:border-blue-400 hover:scale-105" data-color="blue" data-img="assets/duke-atlantic-blue.png" data-name="ATLANTIC BLUE" data-desc="High-contrast Atlantic Blue metallic tank covers with bright orange graphic accents and black subframe." data-hex="#0077FF">
+                <span class="w-4 h-4 rounded-full bg-[#0077FF] shadow-[0_0_10px_#0077FF]"></span>
+                <span class="font-heading font-black text-xs uppercase tracking-wider text-zinc-300">ATLANTIC BLUE</span>
+              </button>
+
+              <!-- Swatch 3: Stealth Track -->
+              <button class="colorway-btn flex items-center gap-2.5 px-4 py-2 rounded-full border border-white/20 bg-black/60 transition-all duration-300 hover:border-orange-500 hover:scale-105" data-color="track" data-img="assets/ktm_duke_track.jpg" data-name="TRACK RACER EDITION" data-desc="Aggressive circuit setup with Akrapovic tuned exhaust, race graphics, and knee-slider track readiness." data-hex="#E65100">
+                <span class="w-4 h-4 rounded-full bg-[#333333] border border-orange-500 shadow-[0_0_10px_#FF6600]"></span>
+                <span class="font-heading font-black text-xs uppercase tracking-wider text-zinc-300">TRACK RACER</span>
+              </button>
+            </div>
+          </div>
+
+          <button class="book-test-ride-trigger px-6 py-3 font-heading font-black text-sm uppercase tracking-wider text-black bg-ktm-orange cut-corner-btn transition-all duration-300 hover:bg-white hover:scale-105 flex items-center gap-2">
+            <span>CONFIGURE THIS BIKE</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- INTERACTIVE TFT COCKPIT & THROTTLE SIMULATOR -->
+  <section id="cockpit" class="relative py-28 bg-black overflow-hidden">
+    
+    <div class="max-w-7xl mx-auto px-6 relative z-10">
+      
+      <!-- Section Header -->
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-500/10 border border-orange-500/30 text-ktm-orange text-xs font-mono uppercase tracking-[0.25em] mb-4">
+          <i data-lucide="radio" class="w-3.5 h-3.5"></i>
+          <span>INTERACTIVE 5" TFT COCKPIT & AUDIO SIMULATOR</span>
+        </div>
+        <h2 class="font-heading font-black text-4xl sm:text-6xl uppercase tracking-tight text-white">
+          THE PILOT <span class="text-ktm-orange italic">COCKPIT</span>
+        </h2>
+        <p class="text-zinc-400 text-sm sm:text-base mt-4 font-sans">
+          Take the handlebars. Switch ride modes (Street, Rain, Track) and hold the throttle button or keyboard spacebar to rev the 399cc LC4c single-cylinder powerhouse to its 10,000 RPM redline!
+        </p>
+      </div>
+
+      <!-- TFT Display Frame Container -->
+      <div class="max-w-4xl mx-auto">
+        
+        <div class="relative rounded-3xl border-4 border-zinc-800 bg-zinc-950 p-6 sm:p-10 shadow-[0_0_60px_rgba(255,102,0,0.2)]">
+          
+          <!-- TFT Screen Shell -->
+          <div id="tft-screen" class="relative rounded-2xl border-2 border-orange-500/40 bg-zinc-900/90 p-6 sm:p-8 backdrop-blur-md overflow-hidden transition-all duration-300">
+            
+            <!-- Top HUD Bar: Mode, Time, Connectivity -->
+            <div class="flex items-center justify-between border-b border-white/10 pb-4 mb-6">
+              <div class="flex items-center gap-3">
+                <span class="font-mono text-xs text-zinc-400 font-bold">MODE:</span>
+                <span id="tft-mode-badge" class="px-3 py-1 bg-ktm-orange text-black font-heading font-black text-xs uppercase tracking-wider rounded">
+                  TRACK MODE
+                </span>
+                <span class="text-xs font-mono text-green-400 flex items-center gap-1">
+                  <i data-lucide="bluetooth" class="w-3 h-3"></i> KTMconnect
+                </span>
+              </div>
+              <div class="flex items-center gap-4 text-xs font-mono text-zinc-400">
+                <span class="text-orange-400 font-bold">MTC: ON</span>
+                <span class="text-white font-bold">ABS: SUPERMOTO</span>
+                <span>12:45 PM</span>
+              </div>
+            </div>
+
+            <!-- Main Gauge Center: RPM Curve & Speedometer -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+              
+              <!-- Left Gauge: Speedometer & Gear Indicator (7 Cols) -->
+              <div class="md:col-span-7 flex items-center justify-between">
+                
+                <!-- Large Speed Digits -->
+                <div>
+                  <span class="text-[10px] font-mono text-zinc-500 uppercase tracking-widest">SPEED</span>
+                  <div class="flex items-baseline gap-2">
+                    <span id="tft-speed-display" class="font-heading font-black text-7xl sm:text-9xl text-white tracking-tighter leading-none">0</span>
+                    <span class="text-xl font-heading font-black text-ktm-orange">KM/H</span>
+                  </div>
+                  <div class="flex items-center gap-3 mt-2 text-xs font-mono text-zinc-400">
+                    <span>TRIP 1: 142.8 KM</span>
+                    <span>ODO: 3,920 KM</span>
+                  </div>
+                </div>
+
+                <!-- Gear Indicator Box -->
+                <div class="flex flex-col items-center justify-center p-4 rounded-xl border-2 border-orange-500 bg-orange-500/10 min-w-[90px]">
+                  <span class="text-[10px] font-mono text-orange-400 uppercase font-bold">GEAR</span>
+                  <span id="tft-gear-display" class="font-heading font-black text-6xl text-white leading-none my-1">N</span>
+                  <span class="text-[10px] font-mono text-green-400 font-bold">QUICKSHIFT+</span>
+                </div>
+
+              </div>
+
+              <!-- Right Gauge: Dynamic RPM Bar & Redline Shift Indicator (5 Cols) -->
+              <div class="md:col-span-5 flex flex-col justify-center">
+                
+                <div class="flex justify-between items-center text-xs font-mono mb-2">
+                  <span class="text-zinc-400">TACHOMETER</span>
+                  <span id="tft-rpm-number" class="text-ktm-orange font-bold text-base font-mono">1,400 RPM</span>
+                </div>
+
+                <!-- Tachometer Curve Meter -->
+                <div class="w-full bg-zinc-950 h-8 rounded-lg border border-white/10 p-1 flex items-center relative overflow-hidden">
+                  <div id="tft-rpm-bar" class="h-full bg-gradient-to-r from-green-500 via-orange-500 to-red-600 rounded transition-all duration-75 w-[14%]"></div>
+                  <!-- Redline Mark -->
+                  <div class="absolute right-6 top-0 bottom-0 w-0.5 bg-red-500 z-10"></div>
+                </div>
+
+                <!-- RPM Labels -->
+                <div class="flex justify-between text-[9px] font-mono text-zinc-500 mt-1">
+                  <span>0</span>
+                  <span>2k</span>
+                  <span>4k</span>
+                  <span>6k</span>
+                  <span>8k</span>
+                  <span class="text-red-500 font-bold">10k RED</span>
+                </div>
+
+                <!-- Shift Light Indicator -->
+                <div id="tft-shift-light" class="mt-4 p-2 rounded-lg border border-white/10 bg-zinc-950 text-center font-heading font-black text-xs uppercase tracking-widest text-zinc-500 transition-all duration-150">
+                  SHIFT LIGHT: READY
+                </div>
+
+              </div>
+
+            </div>
+
+            <!-- Bottom Telemetry & Status Bar -->
+            <div class="mt-8 pt-4 border-t border-white/10 grid grid-cols-3 gap-4 text-center font-mono text-xs">
+              <div class="p-2 rounded bg-zinc-950/60 border border-white/5">
+                <span class="text-zinc-500 block text-[10px]">COOLANT TEMP</span>
+                <span class="text-white font-bold">88°C OPTIMAL</span>
+              </div>
+              <div class="p-2 rounded bg-zinc-950/60 border border-white/5">
+                <span class="text-zinc-500 block text-[10px]">FUEL RANGE</span>
+                <span class="text-white font-bold">340 KM (FULL)</span>
+              </div>
+              <div class="p-2 rounded bg-zinc-950/60 border border-white/5">
+                <span class="text-zinc-500 block text-[10px]">LEAN ANGLE SENSOR</span>
+                <span id="tft-lean-angle" class="text-orange-400 font-bold">0.0° VERTICAL</span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Interactive Cockpit Controls -->
+          <div class="mt-8 flex flex-col sm:flex-row items-center justify-between gap-6">
+            
+            <!-- Ride Mode Switches -->
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-mono text-zinc-400 uppercase">MODE:</span>
+              <button class="cockpit-mode-btn active px-4 py-2 font-heading font-bold text-xs uppercase rounded bg-ktm-orange text-black border border-ktm-orange transition-all" data-mode="track">
+                TRACK
+              </button>
+              <button class="cockpit-mode-btn px-4 py-2 font-heading font-bold text-xs uppercase rounded bg-zinc-900 text-zinc-300 border border-white/10 transition-all hover:text-white hover:border-ktm-orange" data-mode="street">
+                STREET
+              </button>
+              <button class="cockpit-mode-btn px-4 py-2 font-heading font-bold text-xs uppercase rounded bg-zinc-900 text-zinc-300 border border-white/10 transition-all hover:text-white hover:border-ktm-orange" data-mode="rain">
+                RAIN
+              </button>
+            </div>
+
+            <!-- Big Throttle Rev Trigger Button -->
+            <button id="cockpit-throttle-btn" class="w-full sm:w-auto px-8 py-4 font-heading font-black text-base uppercase tracking-wider text-black bg-ktm-orange cut-corner-btn flex items-center justify-center gap-3 shadow-[0_0_25px_rgba(255,102,0,0.5)] transition-all duration-100 active:scale-95 active:bg-white select-none cursor-pointer">
+              <i data-lucide="gauge" class="w-5 h-5"></i>
+              <span>HOLD THROTTLE (SPACEBAR)</span>
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PHOTO GALLERY & MEDIA SHOWCASE SECTION -->
+  <section id="gallery" class="relative py-28 bg-zinc-950 overflow-hidden">
+    
+    <div class="max-w-7xl mx-auto px-6 relative z-10">
+      
+      <!-- Section Header -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 pb-6 border-b border-white/10 gap-6">
+        <div>
+          <div class="flex items-center gap-2 font-mono text-xs uppercase tracking-[0.3em] text-ktm-orange mb-2">
+            <span class="w-4 h-0.5 bg-ktm-orange"></span>
+            <span>CINEMATIC SHOWCASE</span>
+          </div>
+          <h2 class="font-heading font-black text-4xl sm:text-6xl uppercase tracking-tight text-white">
+            GALLERY & <span class="text-ktm-orange italic">ACTION</span>
+          </h2>
+        </div>
+        <p class="text-zinc-400 max-w-md font-sans text-sm leading-relaxed">
+          From street domination to knee-down apex carving. Experience the raw aesthetic of the Duke 390 in every dimension.
+        </p>
+      </div>
+
+      <!-- Gallery Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+        
+        <!-- Large Featured Image 1 (8 Cols) -->
+        <div class="gallery-item md:col-span-8 relative group overflow-hidden rounded-2xl border border-white/10 bg-black aspect-[16/10] cursor-pointer" data-lightbox="assets/ktm_duke_track.jpg">
+          <img src="assets/ktm_duke_track.jpg" alt="KTM Duke 390 Knee-Down Track Action" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 filter brightness-95">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80 group-hover:opacity-60 transition-opacity"></div>
+          <div class="absolute bottom-6 left-6 right-6 flex items-end justify-between">
+            <div>
+              <span class="text-[10px] font-mono uppercase tracking-widest text-ktm-orange font-bold">CIRCUIT WEAPON</span>
+              <h3 class="font-heading font-black text-2xl text-white uppercase">Track Apex Knee-Down</h3>
+            </div>
+            <div class="w-10 h-10 rounded-full bg-ktm-orange/80 backdrop-blur-md flex items-center justify-center text-black group-hover:scale-110 transition-transform">
+              <i data-lucide="maximize-2" class="w-5 h-5"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Medium Image 2 (4 Cols) -->
+        <div class="gallery-item md:col-span-4 relative group overflow-hidden rounded-2xl border border-white/10 bg-black aspect-[4/5] cursor-pointer" data-lightbox="assets/PHO_BIKE_90_REVO_MY24-KTM-390-DUKE-BLUE-90-FRONT-RIGHT_SALL_AEPI_V1.png">
+          <img src="assets/PHO_BIKE_90_REVO_MY24-KTM-390-DUKE-BLUE-90-FRONT-RIGHT_SALL_AEPI_V1.png" alt="KTM Duke 390 Atlantic Blue Studio Cutout" class="w-full h-full object-contain p-6 bg-zinc-950 transition-transform duration-700 group-hover:scale-105">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent opacity-80 group-hover:opacity-60 transition-opacity"></div>
+          <div class="absolute bottom-6 left-6 right-6 flex items-end justify-between">
+            <div>
+              <span class="text-[10px] font-mono uppercase tracking-widest text-blue-400 font-bold">STUDIO CUTOUT</span>
+              <h3 class="font-heading font-black text-xl text-white uppercase">Atlantic Blue Profile</h3>
+            </div>
+            <div class="w-10 h-10 rounded-full bg-blue-500/80 backdrop-blur-md flex items-center justify-center text-white group-hover:scale-110 transition-transform">
+              <i data-lucide="maximize-2" class="w-5 h-5"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Medium Image 3 (4 Cols) -->
+        <div class="gallery-item md:col-span-4 relative group overflow-hidden rounded-2xl border border-white/10 bg-black aspect-[4/5] cursor-pointer" data-lightbox="assets/ChatGPT Image Sep 28, 2026, 03_45_39 AM.png">
+          <img src="assets/ChatGPT Image Sep 28, 2026, 03_45_39 AM.png" alt="KTM Duke 390 Exploded Blueprint" class="w-full h-full object-contain p-4 bg-zinc-900 transition-transform duration-700 group-hover:scale-105">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent opacity-80 group-hover:opacity-60 transition-opacity"></div>
+          <div class="absolute bottom-6 left-6 right-6 flex items-end justify-between">
+            <div>
+              <span class="text-[10px] font-mono uppercase tracking-widest text-ktm-orange font-bold">ENGINEERING BLUEPRINT</span>
+              <h3 class="font-heading font-black text-xl text-white uppercase">Exploded Assembly</h3>
+            </div>
+            <div class="w-10 h-10 rounded-full bg-ktm-orange/80 backdrop-blur-md flex items-center justify-center text-black group-hover:scale-110 transition-transform">
+              <i data-lucide="maximize-2" class="w-5 h-5"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Large Featured Image 4 (8 Cols) -->
+        <div class="gallery-item md:col-span-8 relative group overflow-hidden rounded-2xl border border-white/10 bg-black aspect-[16/10] cursor-pointer" data-lightbox="assets/ktm_duke_390_orange.jpg">
+          <img src="assets/ktm_duke_390_orange.jpg" alt="KTM 390 Duke Electronic Orange Studio Stance" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 filter brightness-95">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80 group-hover:opacity-60 transition-opacity"></div>
+          <div class="absolute bottom-6 left-6 right-6 flex items-end justify-between">
+            <div>
+              <span class="text-[10px] font-mono uppercase tracking-widest text-ktm-orange font-bold">STUDIO STANCE</span>
+              <h3 class="font-heading font-black text-2xl text-white uppercase">Electronic Orange Hero</h3>
+            </div>
+            <div class="w-10 h-10 rounded-full bg-ktm-orange/80 backdrop-blur-md flex items-center justify-center text-black group-hover:scale-110 transition-transform">
+              <i data-lucide="maximize-2" class="w-5 h-5"></i>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- TEST RIDE BOOKING MODAL -->
+  <div id="test-ride-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/85 backdrop-blur-xl opacity-0 pointer-events-none transition-all duration-300 p-4">
+    <div class="relative w-full max-w-xl rounded-3xl border-2 border-ktm-orange bg-zinc-950 p-6 sm:p-10 shadow-[0_0_80px_rgba(255,102,0,0.4)] transform scale-95 transition-transform duration-300">
+      
+      <!-- Close Button -->
+      <button id="close-modal-btn" class="absolute top-6 right-6 p-2 rounded-full bg-zinc-900 border border-white/10 text-zinc-400 hover:text-white hover:border-ktm-orange transition-colors">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <!-- Modal Title -->
+      <div class="mb-6">
+        <div class="flex items-center gap-2 font-mono text-xs text-ktm-orange uppercase tracking-widest mb-1">
+          <span class="w-2 h-2 bg-ktm-orange rounded-full animate-ping"></span>
+          <span>OFFICIAL KTM DEALERSHIP NETWORK</span>
+        </div>
+        <h3 class="font-heading font-black text-3xl sm:text-4xl text-white uppercase">
+          BOOK YOUR <span class="text-ktm-orange">TEST RIDE</span>
+        </h3>
+        <p class="text-zinc-400 text-xs sm:text-sm mt-1">
+          Experience the 399cc LC4c engine in person. Our KTM factory specialists will prep your machine.
+        </p>
+      </div>
+
+      <!-- Booking Form -->
+      <form id="test-ride-form" class="space-y-4">
+        <div>
+          <label class="block text-[11px] font-mono text-zinc-400 uppercase mb-1">FULL NAME *</label>
+          <input type="text" required placeholder="Alexander Marquez" class="w-full px-4 py-3 rounded-lg bg-zinc-900 border border-white/10 text-white font-sans text-sm focus:border-ktm-orange focus:outline-none focus:ring-1 focus:ring-ktm-orange transition-colors">
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-[11px] font-mono text-zinc-400 uppercase mb-1">EMAIL ADDRESS *</label>
+            <input type="email" required placeholder="alex@racing.com" class="w-full px-4 py-3 rounded-lg bg-zinc-900 border border-white/10 text-white font-sans text-sm focus:border-ktm-orange focus:outline-none">
+          </div>
+          <div>
+            <label class="block text-[11px] font-mono text-zinc-400 uppercase mb-1">PHONE NUMBER *</label>
+            <input type="tel" required placeholder="+1 (555) 019-2831" class="w-full px-4 py-3 rounded-lg bg-zinc-900 border border-white/10 text-white font-sans text-sm focus:border-ktm-orange focus:outline-none">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-[11px] font-mono text-zinc-400 uppercase mb-1">PREFERRED DEALER CITY *</label>
+            <select class="w-full px-4 py-3 rounded-lg bg-zinc-900 border border-white/10 text-white font-sans text-sm focus:border-ktm-orange focus:outline-none">
+              <option value="la">Los Angeles, CA // KTM Pro Center</option>
+              <option value="ny">New York, NY // Metro Speed</option>
+              <option value="tx">Austin, TX // Circuit Moto</option>
+              <option value="fl">Miami, FL // Apex Powersports</option>
+              <option value="uk">London, UK // KTM Official</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-[11px] font-mono text-zinc-400 uppercase mb-1">TEST RIDE DATE *</label>
+            <input type="date" required class="w-full px-4 py-3 rounded-lg bg-zinc-900 border border-white/10 text-white font-sans text-sm focus:border-ktm-orange focus:outline-none">
+          </div>
+        </div>
+
+        <div class="pt-3">
+          <button type="submit" class="w-full py-4 font-heading font-black text-lg uppercase tracking-wider text-black bg-ktm-orange cut-corner-btn transition-all duration-300 hover:bg-white hover:shadow-[0_0_35px_rgba(255,102,0,0.8)]">
+            CONFIRM VIP TEST RIDE
+          </button>
+        </div>
+      </form>
+
+      <!-- Success Confirmation View (Hidden by default) -->
+      <div id="booking-success" class="hidden text-center py-8">
+        <div class="w-16 h-16 rounded-full bg-green-500/20 border-2 border-green-500 text-green-400 flex items-center justify-center mx-auto mb-4">
+          <i data-lucide="check" class="w-8 h-8 stroke-[3]"></i>
+        </div>
+        <h4 class="font-heading font-black text-2xl text-white uppercase">TEST RIDE ARMED & CONFIRMED!</h4>
+        <p class="text-zinc-400 text-sm mt-2 max-w-sm mx-auto font-sans">
+          A KTM test technician has reserved your 2024 Duke 390. Check your inbox for track pass and helmet gear recommendations.
+        </p>
+        <button id="dismiss-success-btn" class="mt-6 px-6 py-2.5 bg-ktm-orange text-black font-heading font-black uppercase text-xs rounded">
+          BACK TO SHOWCASE
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- LIGHTBOX MODAL FOR GALLERY -->
+  <div id="gallery-lightbox" class="fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-2xl opacity-0 pointer-events-none transition-all duration-300 p-4">
+    <button id="close-lightbox-btn" class="absolute top-6 right-6 p-3 rounded-full bg-zinc-900 border border-white/20 text-white hover:bg-ktm-orange hover:text-black transition-colors z-20">
+      <i data-lucide="x" class="w-6 h-6"></i>
+    </button>
+    <div class="relative max-w-5xl max-h-[90vh] flex items-center justify-center">
+      <img id="lightbox-img" src="" alt="Full Resolution KTM Preview" class="max-w-full max-h-[85vh] object-contain rounded-xl border border-white/20 shadow-2xl">
+    </div>
+  </div>
+
+  <!-- MARQUEE TICKER FOOTER BANNER -->
+  <div class="bg-ktm-orange text-black font-heading font-black text-2xl sm:text-3xl uppercase tracking-tighter py-3 overflow-hidden whitespace-nowrap select-none">
+    <div class="marquee-track flex gap-8">
+      <span>READY TO RACE</span>
+      <span>•</span>
+      <span>THE CORNER ROCKET</span>
+      <span>•</span>
+      <span>399CC LC4C POWER</span>
+      <span>•</span>
+      <span>WP APEX ADJUSTABLE</span>
+      <span>•</span>
+      <span>SUPERMOTO ABS</span>
+      <span>•</span>
+      <span>READY TO RACE</span>
+      <span>•</span>
+      <span>THE CORNER ROCKET</span>
+      <span>•</span>
+      <span>399CC LC4C POWER</span>
+      <span>•</span>
+      <span>WP APEX ADJUSTABLE</span>
+      <span>•</span>
+      <span>SUPERMOTO ABS</span>
+    </div>
+  </div>
+
+  <!-- MAIN FOOTER -->
+  <footer class="relative bg-black border-t border-white/10 pt-16 pb-12 overflow-hidden">
+    
+    <div class="max-w-7xl mx-auto px-6 relative z-10">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b border-white/10">
+        
+        <!-- Brand Info (5 Cols) -->
+        <div class="md:col-span-5">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="ktm-badge font-black text-black bg-ktm-orange px-3 py-1 font-heading text-xl skew-x-[-15deg]">
+              <span class="skew-x-[15deg]">KTM</span>
+            </div>
+            <span class="font-heading font-black text-2xl tracking-wider text-white">390 DUKE</span>
+          </div>
+          <p class="text-zinc-400 text-sm max-w-sm font-sans leading-relaxed">
+            Engineered in Mattighofen, Austria. KTM Sportmotorcycle GmbH is the world leader in extreme offroad and razor-sharp street motorcycles.
+          </p>
+          <div class="flex items-center gap-3 mt-6">
+            <a href="#" class="w-10 h-10 rounded-lg bg-zinc-900 border border-white/10 flex items-center justify-center text-zinc-400 hover:text-ktm-orange hover:border-ktm-orange transition-colors">
+              <i data-lucide="instagram" class="w-5 h-5"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-lg bg-zinc-900 border border-white/10 flex items-center justify-center text-zinc-400 hover:text-ktm-orange hover:border-ktm-orange transition-colors">
+              <i data-lucide="youtube" class="w-5 h-5"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-lg bg-zinc-900 border border-white/10 flex items-center justify-center text-zinc-400 hover:text-ktm-orange hover:border-ktm-orange transition-colors">
+              <i data-lucide="twitter" class="w-5 h-5"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-lg bg-zinc-900 border border-white/10 flex items-center justify-center text-zinc-400 hover:text-ktm-orange hover:border-ktm-orange transition-colors">
+              <i data-lucide="facebook" class="w-5 h-5"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Quick Links (2 Cols) -->
+        <div class="md:col-span-2">
+          <h4 class="font-heading font-bold text-sm uppercase tracking-widest text-white mb-4">EXPLORE</h4>
+          <ul class="space-y-2 text-sm font-sans text-zinc-400">
+            <li><a href="#hero" class="hover:text-ktm-orange transition-colors">Overview</a></li>
+            <li><a href="#specs" class="hover:text-ktm-orange transition-colors">Full Specs</a></li>
+            <li><a href="#engineering" class="hover:text-ktm-orange transition-colors">Engineering</a></li>
+            <li><a href="#colorways" class="hover:text-ktm-orange transition-colors">Colorways</a></li>
+            <li><a href="#cockpit" class="hover:text-ktm-orange transition-colors">TFT Cockpit</a></li>
+            <li><a href="#gallery" class="hover:text-ktm-orange transition-colors">Gallery</a></li>
+          </ul>
+        </div>
+
+        <!-- KTM PowerParts (2 Cols) -->
+        <div class="md:col-span-2">
+          <h4 class="font-heading font-bold text-sm uppercase tracking-widest text-white mb-4">PERFORMANCE</h4>
+          <ul class="space-y-2 text-sm font-sans text-zinc-400">
+            <li><a href="#" class="hover:text-ktm-orange transition-colors">KTM PowerParts</a></li>
+            <li><a href="#" class="hover:text-ktm-orange transition-colors">KTM PowerWear</a></li>
+            <li><a href="#" class="hover:text-ktm-orange transition-colors">Dealer Locator</a></li>
+            <li><a href="#" class="hover:text-ktm-orange transition-colors">KTM Finance</a></li>
+            <li><a href="#" class="hover:text-ktm-orange transition-colors">Warranty & Service</a></li>
+          </ul>
+        </div>
+
+        <!-- Newsletter & Test Ride (3 Cols) -->
+        <div class="md:col-span-3">
+          <h4 class="font-heading font-bold text-sm uppercase tracking-widest text-white mb-4">PADDOCK NEWSLETTER</h4>
+          <p class="text-xs text-zinc-400 mb-3">Get track updates, MotoGP race results, and exclusive KTM releases.</p>
+          <form class="flex gap-2" onsubmit="event.preventDefault(); alert('Subscribed to KTM Paddock Insider!');">
+            <input type="email" placeholder="rider@ktm.com" required class="w-full px-3 py-2 bg-zinc-900 border border-white/10 text-xs rounded text-white focus:border-ktm-orange focus:outline-none">
+            <button type="submit" class="px-4 py-2 bg-ktm-orange text-black font-heading font-bold text-xs uppercase rounded hover:bg-white transition-colors">
+              JOIN
+            </button>
+          </form>
+          <div class="mt-4">
+            <button class="book-test-ride-trigger w-full py-3 bg-zinc-900 border border-orange-500/40 text-orange-400 font-heading font-bold text-xs uppercase tracking-wider rounded hover:bg-ktm-orange hover:text-black transition-all">
+              FIND NEAREST DEALER
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Copyright & Legal -->
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs font-mono text-zinc-500 gap-4">
+        <div>
+          © 2026 KTM SPORTMOTORCYCLE GMBH. ALL RIGHTS RESERVED. "READY TO RACE" AND THE KTM LOGO ARE REGISTERED TRADEMARKS.
+        </div>
+        <div class="flex items-center gap-4">
+          <a href="#" class="hover:text-zinc-300">PRIVACY POLICY</a>
+          <a href="#" class="hover:text-zinc-300">TERMS OF USE</a>
+          <a href="#" class="hover:text-zinc-300">COOKIES</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/audio-synth.js"></script>
+  <script src="js/hero-3d-player.js"></script>
+  <script src="js/bike-fall-animation.js"></script>
+  <script src="js/scroll-scrubber.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
