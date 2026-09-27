@@ -53,6 +53,11 @@ document.addEventListener('DOMContentLoaded', () => {
     currentSpeed += (targetSpeed - currentSpeed) * 0.24;
     const displaySpeed = Math.round(currentSpeed);
 
+    // Modulate procedural audio engine dynamically with real-time scroll/slide velocity
+    if (window.ktmSound && typeof window.ktmSound.setScrollVelocity === 'function') {
+      window.ktmSound.setScrollVelocity(displaySpeed);
+    }
+
     // Update Speed & Gear Badge
     if (speedValEl) speedValEl.innerText = displaySpeed;
     if (gearValEl) {

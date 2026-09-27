@@ -231,6 +231,12 @@ class KTMHero3DPlayer {
       if (newFrame < 1) newFrame = this.frameCount + ((newFrame - 1) % this.frameCount);
 
       this.targetFrame = newFrame;
+
+      // Audio engine rev response on fast manual scrub/slide
+      const scrubSpeed = Math.min(220, Math.abs(deltaX) * 1.8);
+      if (scrubSpeed > 15 && window.ktmSound && typeof window.ktmSound.setScrollVelocity === 'function') {
+        window.ktmSound.setScrollVelocity(scrubSpeed);
+      }
     };
 
     const onEnd = () => {
