@@ -411,13 +411,13 @@ document.addEventListener('DOMContentLoaded', () => {
   let currentSimSpeed = 0;
   let cockpitAnimFrame = null;
 
-  // Audio Toggle
+  // Audio Toggle (Sound On / Sound Off)
   if (soundToggleBtn && window.ktmSound) {
     soundToggleBtn.addEventListener('click', () => {
-      const active = window.ktmSound.toggle();
-      soundToggleBtn.classList.toggle('sound-active', active);
+      const isNowActive = window.ktmSound.toggle();
+      soundToggleBtn.classList.toggle('sound-active', isNowActive);
       if (soundBtnText) {
-        soundBtnText.innerText = active ? 'ENGINE SOUND: ON (LC4c)' : 'ENGINE SOUND: OFF';
+        soundBtnText.innerText = isNowActive ? 'SOUND: ON (LC4c)' : 'SOUND: MUTED';
       }
     });
   }
@@ -430,8 +430,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     if (window.ktmSound) {
       window.ktmSound.setThrottle(true);
-      if (soundToggleBtn) soundToggleBtn.classList.add('sound-active');
-      if (soundBtnText) soundBtnText.innerText = 'ENGINE SOUND: ON (LC4c)';
+      if (!window.ktmSound.isMuted) {
+        if (soundToggleBtn) soundToggleBtn.classList.add('sound-active');
+        if (soundBtnText) soundBtnText.innerText = 'SOUND: ON (LC4c)';
+      }
     }
   };
 

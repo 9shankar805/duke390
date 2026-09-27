@@ -1,13 +1,13 @@
 /**
  * KTM Duke 390 - High-Fidelity Procedural LC4c Engine Audio Synthesizer
- * Simulates authentic 399cc Single-Cylinder 4-Stroke Exhaust, Rev Limiter,
- * Throttle-Hold Revving, and Scroll-Velocity Sound Modulation.
+ * Supports real-time throttle revving, velocity modulation, and dedicated Sound On/Off Toggle.
  */
 
 class KTMEngineSound {
   constructor() {
     this.ctx = null;
     this.isRunning = false;
+    this.isMuted = false;
     this.isThrottleHeld = false;
     
     // RPM Dynamics
@@ -15,7 +15,7 @@ class KTMEngineSound {
     this.maxRPM = 10500;
     this.currentRPM = 1600;
     this.targetRPM = 1600;
-    this.throttlePosition = 0; // 0.0 (closed) to 1.0 (WOT)
+    this.throttlePosition = 0; // 0.0 to 1.0
     this.scrollVelocity = 0;   // In KM/H
     
     // Audio Nodes
@@ -29,11 +29,9 @@ class KTMEngineSound {
     this.intakeGain = null;
     this.crackleGain = null;
     this.distortionNode = null;
+    this.compressor = null;
 
     this.lastActiveTime = 0;
-    this.isMuted = false;
-    this.hasUserInteracted = false;
-    
     this.animLoop = null;
   }
 
@@ -43,23 +41,23 @@ class KTMEngineSound {
       const AudioCtx = window.AudioContext || window.webkitAudioContext;
       this.ctx = new AudioCtx();
 
-      // Master Volume & Dynamic Limiter
+      // Master Volume
       this.masterGain = this.ctx.createGain();
       this.masterGain.gain.setValueAtTime(0.0001, this.ctx.currentTime);
 
-      const compressor = this.ctx.createDynamicsCompressor();
-      compressor.threshold.setValueAtTime(-14, this.ctx.currentTime);
-      compressor.knee.setValueAtTime(8, this.ctx.currentTime);
-      compressor.ratio.setValueAtTime(8, this.ctx.currentTime);
-      compressor.attack.setValueAtTime(0.003, this.ctx.currentTime);
-      compressor.release.setValueAtTime(0.15, this.ctx.currentTime);
+      this.compressor = this.ctx.createDynamicsCompressor();
+      this.compressor.threshold.setValueAtTime(-14, this.ctx.currentTime);
+      this.compressor.knee.setValueAtTime(8, this.ctx.currentTime);
+      this.compressor.ratio.setValueAtTime(8, this.ctx.currentTime);
+      this.compressor.attack.setValueAtTime(0.003, this.ctx.currentTime);
+      this.compressor.release.setValueAtTime(0.15, this.ctx.currentTime);
 
-      // Distortion / Exhaust Rasp Node
+      // Distortion Node
       this.distortionNode = this.ctx.createWaveShaper();
       this.distortionNode.curve = this.makeDistortionCurve(18);
       this.distortionNode.oversample = '2x';
 
-      // 1. Primary Crankshaft Single-Cylinder Pulse (Sawtooth)
+      // 1. Primary Crankshaft Single-Cylinder Pulse
       this.crankOsc = this.ctx.createOscillator();
       this.crankOsc.type = 'sawtooth';
       this.crankOsc.frequency.setValueAtTime(this.idleRPM / 60, this.ctx.currentTime);
@@ -68,7 +66,7 @@ class KTMEngineSound {
       crankGain.gain.setValueAtTime(0.45, this.ctx.currentTime);
       this.crankOsc.connect(crankGain);
 
-      // 2. Harmonic Resonance (Square wave filtered for KTM signature mechanical bark)
+      // 2. Harmonic Resonance (Triangle/Square)
       this.harmonicOsc = this.ctx.createOscillator();
       this.harmonicOsc.type = 'triangle';
       this.harmonicOsc.frequency.setValueAtTime((this.idleRPM / 60) * 2, this.ctx.currentTime);
@@ -77,7 +75,7 @@ class KTMEngineSound {
       harmonicGain.gain.setValueAtTime(0.35, this.ctx.currentTime);
       this.harmonicOsc.connect(harmonicGain);
 
-      // 3. Sub-bass Piston Thump (Sine wave for low-end punch)
+      // 3. Sub-bass Piston Thump
       this.subBassOsc = this.ctx.createOscillator();
       this.subBassOsc.type = 'sine';
       this.subBassOsc.frequency.setValueAtTime(this.idleRPM / 60, this.ctx.currentTime);
@@ -86,13 +84,13 @@ class KTMEngineSound {
       subGain.gain.setValueAtTime(0.5, this.ctx.currentTime);
       this.subBassOsc.connect(subGain);
 
-      // 4. Exhaust Canister Lowpass & Resonant Chamber
+      // 4. Exhaust Lowpass Resonant Filter
       this.exhaustFilter = this.ctx.createBiquadFilter();
       this.exhaustFilter.type = 'lowpass';
       this.exhaustFilter.frequency.setValueAtTime(320, this.ctx.currentTime);
       this.exhaustFilter.Q.setValueAtTime(3.5, this.ctx.currentTime);
 
-      // 5. Airbox Induction Roar (Bandpass Noise)
+      // 5. Airbox Induction Roar
       const bufferSize = this.ctx.sampleRate * 2;
       const noiseBuffer = this.ctx.createBuffer(1, bufferSize, this.ctx.sampleRate);
       const output = noiseBuffer.getChannelData(0);
@@ -115,13 +113,12 @@ class KTMEngineSound {
       this.intakeNoise.connect(this.intakeFilter);
       this.intakeFilter.connect(this.intakeGain);
 
-      // Decel Overrun Crackle Node
+      // Crackle Node
       this.crackleGain = this.ctx.createGain();
       this.crackleGain.gain.setValueAtTime(0.001, this.ctx.currentTime);
       this.intakeFilter.connect(this.crackleGain);
 
-      // Node Graph Routing:
-      // Oscillators -> Exhaust Filter -> Distortion -> Master Gain -> Compressor -> Destination
+      // Routing
       crankGain.connect(this.exhaustFilter);
       harmonicGain.connect(this.exhaustFilter);
       subGain.connect(this.exhaustFilter);
@@ -130,8 +127,8 @@ class KTMEngineSound {
 
       this.exhaustFilter.connect(this.distortionNode);
       this.distortionNode.connect(this.masterGain);
-      this.masterGain.connect(compressor);
-      compressor.connect(this.ctx.destination);
+      this.masterGain.connect(this.compressor);
+      this.compressor.connect(this.ctx.destination);
 
       this.crankOsc.start();
       this.harmonicOsc.start();
@@ -140,7 +137,7 @@ class KTMEngineSound {
 
       this.startEngineLoop();
     } catch (e) {
-      console.warn('Web Audio API initialized on user interaction:', e);
+      console.warn('Audio Context initialization error:', e);
     }
   }
 
@@ -157,6 +154,7 @@ class KTMEngineSound {
   }
 
   start() {
+    if (this.isMuted) return;
     this.init();
     if (!this.ctx) return;
     if (this.ctx.state === 'suspended') {
@@ -166,31 +164,38 @@ class KTMEngineSound {
     this.lastActiveTime = performance.now();
     const now = this.ctx.currentTime;
     this.masterGain.gain.cancelScheduledValues(now);
-    this.masterGain.gain.linearRampToValueAtTime(0.32, now + 0.3);
+    this.masterGain.gain.linearRampToValueAtTime(0.32, now + 0.2);
   }
 
   stop() {
-    if (!this.ctx || !this.isRunning) return;
+    if (!this.ctx) return;
+    this.isRunning = false;
     const now = this.ctx.currentTime;
     this.masterGain.gain.cancelScheduledValues(now);
-    this.masterGain.gain.linearRampToValueAtTime(0.0001, now + 0.5);
-    setTimeout(() => {
-      this.isRunning = false;
-    }, 550);
+    this.masterGain.gain.linearRampToValueAtTime(0.00001, now + 0.15);
   }
 
   toggle() {
-    if (this.isRunning) {
+    this.init();
+    if (this.ctx && this.ctx.state === 'suspended') {
+      this.ctx.resume();
+    }
+
+    if (!this.isMuted && this.isRunning) {
+      // User wants Sound OFF
+      this.isMuted = true;
       this.stop();
       return false;
     } else {
+      // User wants Sound ON
+      this.isMuted = false;
       this.start();
       return true;
     }
   }
 
-  // Called when user holds the throttle down
   setThrottle(isHolding) {
+    if (this.isMuted) return;
     this.isThrottleHeld = isHolding;
     if (isHolding) {
       if (!this.isRunning) this.start();
@@ -198,8 +203,8 @@ class KTMEngineSound {
     }
   }
 
-  // Called in real-time when scrolling / sliding at speed
   setScrollVelocity(speedKMH) {
+    if (this.isMuted) return;
     this.scrollVelocity = Math.max(0, Math.min(240, speedKMH));
     if (this.scrollVelocity > 15) {
       this.lastActiveTime = performance.now();
@@ -209,8 +214,8 @@ class KTMEngineSound {
     }
   }
 
-  // Standalone one-shot throttle punch
   playThrottleSound(targetRPM = 8000) {
+    if (this.isMuted) return;
     this.start();
     this.targetRPM = targetRPM;
     this.isThrottleHeld = true;
@@ -221,22 +226,18 @@ class KTMEngineSound {
 
   startEngineLoop() {
     const update = () => {
-      if (this.ctx && this.isRunning) {
+      if (this.ctx && this.isRunning && !this.isMuted) {
         const now = performance.now();
         const timeDelta = Math.max(1, now - this.lastActiveTime);
 
-        // 1. Calculate Target RPM from Throttle Hold & Slide Velocity
+        // 1. Calculate Target RPM
         if (this.isThrottleHeld) {
-          // Rapid climb to rev limiter
           this.throttlePosition += (1.0 - this.throttlePosition) * 0.18;
           this.targetRPM = this.idleRPM + this.throttlePosition * (this.maxRPM - this.idleRPM);
 
-          // Authentic Bouncing Rev-Limiter (>10,000 RPM)
           if (this.currentRPM > 9900) {
             if (Math.random() > 0.45) {
-              // Ignition cut drop
               this.currentRPM -= (280 + Math.random() * 320);
-              // Rev limiter crackle pop
               if (this.crackleGain) {
                 this.crackleGain.gain.setValueAtTime(0.12, this.ctx.currentTime);
                 this.crackleGain.gain.exponentialRampToValueAtTime(0.0001, this.ctx.currentTime + 0.08);
@@ -244,25 +245,22 @@ class KTMEngineSound {
             }
           }
         } else if (this.scrollVelocity > 5) {
-          // Dynamic RPM scaling from slide velocity (5 KM/H to 220 KM/H)
           this.throttlePosition = Math.min(1.0, this.scrollVelocity / 160);
           this.targetRPM = this.idleRPM + (this.scrollVelocity / 220) * (this.maxRPM - this.idleRPM);
         } else {
-          // Closed throttle - deceleration burble back to idle
           this.throttlePosition += (0 - this.throttlePosition) * 0.1;
           this.targetRPM = this.idleRPM;
         }
 
-        // Smooth physical RPM Lerp (Faster rev-up, realistic inertia drop)
         const lerpFactor = this.targetRPM > this.currentRPM ? 0.14 : 0.06;
         this.currentRPM += (this.targetRPM - this.currentRPM) * lerpFactor;
 
-        // Auto-fade to quiet sleep if stationary and no throttle for > 4.5s
+        // Auto-silence when idle
         if (!this.isThrottleHeld && this.scrollVelocity < 3 && timeDelta > 4500) {
           this.stop();
         }
 
-        // 2. Synthesize Physical Cylinder Frequencies (4-stroke single = RPM / 60)
+        // 2. Synthesize Physical Frequencies
         const audioTime = this.ctx.currentTime;
         const firingFreq = Math.max(12, this.currentRPM / 60);
 
@@ -276,14 +274,13 @@ class KTMEngineSound {
           this.subBassOsc.frequency.setTargetAtTime(Math.max(15, firingFreq * 0.5), audioTime, 0.04);
         }
 
-        // 3. Dynamic Exhaust & Airbox Filter modulation
-        // As RPM & throttle open, filter moves from 280Hz (muffled idle) to 2800Hz (screaming open pipe)
+        // 3. Dynamic Filter modulation
         const filterCutoff = 280 + (this.currentRPM / this.maxRPM) * 2400 + (this.throttlePosition * 600);
         if (this.exhaustFilter) {
           this.exhaustFilter.frequency.setTargetAtTime(filterCutoff, audioTime, 0.03);
         }
 
-        // 4. Airbox Induction Hiss & Roar under heavy load
+        // 4. Airbox Induction
         if (this.intakeGain) {
           const intakeVolume = 0.02 + this.throttlePosition * 0.18;
           this.intakeGain.gain.setTargetAtTime(intakeVolume, audioTime, 0.04);
@@ -293,8 +290,8 @@ class KTMEngineSound {
           this.intakeFilter.frequency.setTargetAtTime(intakeCutoff, audioTime, 0.03);
         }
 
-        // 5. Volume scale with power output
-        if (this.masterGain && this.isRunning) {
+        // 5. Volume
+        if (this.masterGain && this.isRunning && !this.isMuted) {
           const dynamicGain = 0.28 + (this.currentRPM / this.maxRPM) * 0.26;
           this.masterGain.gain.setTargetAtTime(dynamicGain, audioTime, 0.05);
         }

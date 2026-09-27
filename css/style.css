@@ -118,10 +118,10 @@ body {
 .sound-wave .bar {
   display: inline-block;
   width: 3px;
-  height: 12px;
-  background-color: var(--ktm-orange);
+  height: 10px;
+  background-color: #71717a;
   border-radius: 2px;
-  animation: soundBars 1s infinite alternate ease-in-out;
+  animation: none;
 }
 
 .sound-wave .bar-1 { animation-delay: 0.1s; }
@@ -129,7 +129,13 @@ body {
 .sound-wave .bar-3 { animation-delay: 0.2s; }
 
 .hud-sound-btn.sound-active .bar {
-  background-color: #00FF88;
+  background-color: var(--ktm-orange);
+  animation: soundBars 0.8s infinite alternate ease-in-out;
+}
+
+.hud-sound-btn.sound-active {
+  border-color: #FF6600 !important;
+  box-shadow: 0 0 20px rgba(255, 102, 0, 0.45) !important;
 }
 
 @keyframes soundBars {
