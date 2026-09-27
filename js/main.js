@@ -686,7 +686,15 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ==========================================================================
      12. SYSTEM READY SYNCHRONIZATION (POST-PRELOADER)
      ========================================================================== */
+  const refreshIcons = () => {
+    if (window.lucide && typeof window.lucide.createIcons === 'function') {
+      window.lucide.createIcons();
+    }
+  };
+
+  window.addEventListener('load', refreshIcons);
   window.addEventListener('ktm:ready', () => {
+    refreshIcons();
     // Recalculate canvas viewports
     window.dispatchEvent(new Event('resize'));
     
