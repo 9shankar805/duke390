@@ -246,58 +246,69 @@ document.addEventListener('DOMContentLoaded', () => {
      ========================================================================== */
   const componentCards = document.querySelectorAll('.component-row-card');
 
-  if (componentCards.length > 0 && typeof ScrollTrigger !== 'undefined') {
-    gsap.from(componentCards, {
-      scrollTrigger: {
-        trigger: '#engineering-row-section',
-        start: 'top 80%',
-        end: 'top 35%',
-        scrub: 0.6
-      },
-      y: 90,
-      opacity: 0,
-      scale: 0.9,
-      stagger: 0.1,
-      ease: 'back.out(1.5)'
-    });
+  if (componentCards.length > 0) {
+    // Reveal cards with smooth stagger
+    if (typeof ScrollTrigger !== 'undefined' && typeof gsap !== 'undefined') {
+      gsap.fromTo(componentCards, 
+        { y: 50, opacity: 0, scale: 0.94 },
+        {
+          y: 0,
+          opacity: 1,
+          scale: 1,
+          stagger: 0.08,
+          duration: 0.7,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: '#engineering-row-section',
+            start: 'top 85%',
+            toggleActions: 'play none none none',
+            once: true
+          }
+        }
+      );
+    }
 
-    componentCards.forEach((card) => {
-      card.addEventListener('mouseenter', () => {
-        gsap.to(card, {
-          y: -10,
-          scale: 1.03,
-          borderColor: '#FF6600',
-          boxShadow: '0 18px 40px rgba(255, 102, 0, 0.35)',
-          duration: 0.25,
-          ease: 'power2.out'
-        });
-
-        const title = card.getAttribute('data-title');
-        const desc = card.getAttribute('data-desc');
-        const spec1 = card.getAttribute('data-spec1');
-        const spec2 = card.getAttribute('data-spec2');
-
-        const activeTitleEl = document.getElementById('row-detail-title');
-        const activeDescEl = document.getElementById('row-detail-desc');
-        const activeSpec1El = document.getElementById('row-detail-spec1');
-        const activeSpec2El = document.getElementById('row-detail-spec2');
-
-        if (activeTitleEl && title) activeTitleEl.innerText = title;
-        if (activeDescEl && desc) activeDescEl.innerText = desc;
-        if (activeSpec1El && spec1) activeSpec1El.innerText = spec1;
-        if (activeSpec2El && spec2) activeSpec2El.innerText = spec2;
-      });
-
-      card.addEventListener('mouseleave', () => {
-        gsap.to(card, {
+    const selectComponentCard = (card) => {
+      componentCards.forEach(c => {
+        gsap.to(c, {
           y: 0,
           scale: 1.0,
           borderColor: 'rgba(255, 255, 255, 0.1)',
           boxShadow: '0 10px 30px rgba(0, 0, 0, 0.5)',
-          duration: 0.35,
+          duration: 0.3,
           ease: 'power2.out'
         });
       });
+
+      gsap.to(card, {
+        y: -8,
+        scale: 1.03,
+        borderColor: '#FF6600',
+        boxShadow: '0 18px 40px rgba(255, 102, 0, 0.35)',
+        duration: 0.25,
+        ease: 'power2.out'
+      });
+
+      const title = card.getAttribute('data-title');
+      const desc = card.getAttribute('data-desc');
+      const spec1 = card.getAttribute('data-spec1');
+      const spec2 = card.getAttribute('data-spec2');
+
+      const activeTitleEl = document.getElementById('row-detail-title');
+      const activeDescEl = document.getElementById('row-detail-desc');
+      const activeSpec1El = document.getElementById('row-detail-spec1');
+      const activeSpec2El = document.getElementById('row-detail-spec2');
+
+      if (activeTitleEl && title) activeTitleEl.innerText = title;
+      if (activeDescEl && desc) activeDescEl.innerText = desc;
+      if (activeSpec1El && spec1) activeSpec1El.innerText = spec1;
+      if (activeSpec2El && spec2) activeSpec2El.innerText = spec2;
+    };
+
+    componentCards.forEach((card) => {
+      card.addEventListener('mouseenter', () => selectComponentCard(card));
+      card.addEventListener('click', () => selectComponentCard(card));
+      card.addEventListener('touchstart', () => selectComponentCard(card), { passive: true });
     });
   }
 });
